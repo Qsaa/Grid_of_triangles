@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -10,6 +11,21 @@ struct Point
 {
     Point() :x_(0), y_(0), z_(0) {}
     Point(double x, double y, double z) : x_(x), y_(y), z_(z) {}
+
+    double get_x() const
+    {
+        return x_;
+    }
+
+    double get_y() const
+    {
+        return y_;
+    }
+
+    double get_z() const
+    {
+        return z_;
+    }
 
     double dist(const Point& p)
     {
@@ -49,6 +65,10 @@ private:
 struct ExtendPoint
 {
 
+    Point get_p() const
+    {
+        return p_;
+    }
     friend ostream& operator<<(ostream& out, const ExtendPoint& extend_p)
     {
         return out << extend_p.number_ << ' ' << extend_p.p_;
@@ -75,6 +95,26 @@ void comma_to_space(string& str)
     }
 }
 
+
+bool my_function(ExtendPoint a, ExtendPoint b)
+{
+    return a.get_p().get_x() < b.get_p().get_x();
+}
+
+
+void print_vector(auto& vec)
+{
+    int number = 100;
+    for (auto& el : vec)
+    {
+        cout << el << endl;
+        if (!--number)
+        {
+            break;
+        }
+    }
+}
+
 int main()
 {
     ifstream input_file("barrel-nodes.xyz");
@@ -85,7 +125,7 @@ int main()
     }
 
 
-    vector<ExtendPoint> points_x;
+    vector<ExtendPoint> points;
     for (string str; getline(input_file, str); /*nothing*/)
     {
         if (str[0] != '*')
@@ -94,55 +134,17 @@ int main()
             stringstream strs(str);
             ExtendPoint p;
             strs >> p;
-            points_x.push_back(p);
+            points.push_back(p);
         }
     }
 
-    vector<ExtendPoint> points_y(points_x);
-    //for(auto p: points_y)
-    //{
-    //    cout << p << endl;
-    //}
-
-
-
-
-    //ifstream in("barrel-nodes.xyz");
-    //if (!in.is_open())
-    //{
-    //    cout << "File is not opened" << endl;
-    //    return 0;
-    //}
-    ////for (string str; getline(in, str); cout << str << endl);
-    //
-    //string str;
-    //getline(in, str);
-
-    //getline(in, str);
-    //for (auto& c : str)
-    //{
-    //    if (c == ',')
-    //    {
-    //        c = ' ';
-    //    }
-    //}
-    //cout << str << endl;
-
-    //stringstream sstr(str);
-    //
-    //int n;
-    //sstr >> n;
-    //cout << n << endl;
-
-    //double x, y, z;
-    //Point p2;
-    //sstr >> p2;
-    //cout << p2;
-    //Point p(x, y, z);
-    //cin >> p;
-    //cout << p << endl;
-    //cout << x << " " << y << " " << z << endl;
-    //cout << x + y + z << endl;
+    //vector<int> v = { 1, 2, 3, 4 };
+    print_vector(points);
+    sort(begin(points), end(points), my_function);
+    print_vector(points);
+    vector<ExtendPoint> points_x(points);
+    vector<ExtendPoint> points_y(points);
+    vector<ExtendPoint> points_z(points);
 
 
 
