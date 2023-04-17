@@ -24,14 +24,26 @@
     <ClCompile Include="draft.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="ExtendPoint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="barrel-nodes.xyz">
       <Filter>Файлы ресурсов</Filter>
     </Text>
+    <Text Include="test_data.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Point.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendPoint.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

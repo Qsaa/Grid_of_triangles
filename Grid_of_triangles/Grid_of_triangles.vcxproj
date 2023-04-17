@@ -129,13 +129,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="draft.cpp" />
+    <ClCompile Include="ExtendPoint.cpp" />
     <ClCompile Include="Grid_of_triangles.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Point.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="barrel-nodes.xyz" />
+    <Text Include="test_data.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExtendPoint.h" />
     <ClInclude Include="Point.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

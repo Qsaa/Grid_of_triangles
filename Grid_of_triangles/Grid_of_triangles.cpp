@@ -5,7 +5,6 @@
 #include <vector>
 #include <algorithm>
 
-#include "Point.h"
 
 using namespace std;
 
@@ -120,9 +119,9 @@ void print_vector(auto& vec, int number = -1)
     }
 }
 
-int main()
+int main0()
 {
-    Point p;
+    Point0 p;
     //ifstream input_file("barrel-nodes.xyz");
     //if (!input_file.is_open())
     //{
