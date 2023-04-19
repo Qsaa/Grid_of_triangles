@@ -1,5 +1,21 @@
 #include "Point.h"
 
+bool Point::compare_by_x(const Point* const p1, const Point* const p2)
+{
+	return p1->get_x() < p2->get_x();
+}
+
+bool Point::compare_by_y(const Point* const p1, const Point* const p2)
+{
+	return p1->get_y() < p2->get_y();
+}
+
+bool Point::compare_by_z(const Point* const p1, const Point* const p2)
+{
+	return p1->get_z() < p2->get_z();
+}
+
+
 Point::Point() : x_(0), y_(0), z_(0) {}
 
 double Point::get_x() const

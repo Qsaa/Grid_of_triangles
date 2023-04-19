@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Algorithm_Point.cpp" />
     <ClCompile Include="draft.cpp" />
     <ClCompile Include="ExtendPoint.cpp" />
     <ClCompile Include="Grid_of_triangles.cpp" />
@@ -139,6 +140,7 @@
     <Text Include="test_data.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Algorithm_Point.h" />
     <ClInclude Include="ExtendPoint.h" />
     <ClInclude Include="Point.h" />
   </ItemGroup>

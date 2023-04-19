@@ -1,4 +1,5 @@
 #include "ExtendPoint.h"
+#include "Algorithm_Point.h"
 
 #include <iostream>
 #include <fstream>
@@ -6,21 +7,6 @@
 #include <vector>
 
 using namespace std;
-
-bool my_fx(ExtendPoint* p1, ExtendPoint* p2)
-{
-	return p1->get_x() < p2->get_x();
-
-}
-bool my_fy(ExtendPoint* p1, ExtendPoint* p2)
-{
-	return p1->get_y() < p2->get_y();
-}
-
-bool my_fz(ExtendPoint* p1, ExtendPoint* p2)
-{
-	return p1->get_z() < p2->get_z();
-}
 
 int main()
 {
@@ -30,19 +16,10 @@ int main()
 		cout << "Error! File wasn't found" << endl;
 		return 0;
 	}
-	////Point* points = new ExtendPoint[5];
-	//ExtendPoint* points = new ExtendPoint[5];
-	//for (size_t i = 0; input_file >> points[i]; ++i);
-	//for (size_t i = 0; i < 5; ++i)
-	//{
-	//	cout << points[i] << endl;
-	//}
-
-
 
 	vector<ExtendPoint> points;
 	ExtendPoint point;
-	while(input_file>> point)
+	while(input_file >> point)
 	{
 		points.push_back(point);
 	}
@@ -53,48 +30,55 @@ int main()
 	}
 	cout << endl;
 
-	vector<ExtendPoint*> px;
+
+	vector<ExtendPoint*> p_sort_by_x;
 	ExtendPoint* p;
 	for (auto& el : points)
 	{
 		p = &el;
-		px.push_back(p);
+		p_sort_by_x.push_back(p);
 	}
-	sort(begin(px), end(px), my_fx);
+	sort(begin(p_sort_by_x), end(p_sort_by_x), ExtendPoint::compare_by_x);
 	cout << "______________________X_______________" << endl;
-	for (auto p : px)
+	for (auto p : p_sort_by_x)
 	{
 		cout << *p << endl;
 	}
 
-	vector<ExtendPoint*> py;
+	vector<ExtendPoint*> p_sort_by_y;
 	for (auto& el : points)
 	{
 		p = &el;
-		py.push_back(p);
+		p_sort_by_y.push_back(p);
 	}
 	cout << "______________________Y_______________" << endl;
-	sort(begin(py), end(py), my_fy);
-	for (auto p : py)
+	sort(begin(p_sort_by_y), end(p_sort_by_y), ExtendPoint::compare_by_y);
+	for (auto p : p_sort_by_y)
 	{
 		cout << *p << endl;
 	}
 	cout << endl;
 
 
-	vector<ExtendPoint*> pz;
+	vector<ExtendPoint*> p_sort_by_z;
 	for (auto& el : points)
 	{
 		p = &el;
-		pz.push_back(p);
+		p_sort_by_z.push_back(p);
 	}
-	cout << "______________________Y_______________" << endl;
-	sort(begin(pz), end(pz), [](ExtendPoint* p1, ExtendPoint* p2) { return p1->get_z() < p2->get_z(); });
-	for (auto p : pz)
+
+	cout << "______________________Z_______________" << endl;
+	
+	sort(begin(p_sort_by_z), end(p_sort_by_z), ExtendPoint::compare_by_z);
+	for (auto p : p_sort_by_z)
 	{
 		cout << *p << endl;
 	}
 	cout << endl;
 
+	ExtendPoint* closest_p = get_closest_point_nn(points[0], points.begin() + 1, points.end());
+	
+
+	cout << "Point_ "<<points[0]<< " _the closest: "<< *closest_p << endl;
 	return 0;
 }
