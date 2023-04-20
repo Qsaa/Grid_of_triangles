@@ -2,6 +2,11 @@
 
 ExtendPoint::ExtendPoint(): Point(), number_(0), accetable_(false) {}
 
+size_t ExtendPoint::get_id() const
+{
+	return id_;
+}
+
 std::istream& ExtendPoint::set(std::istream& in)
 {
 	char common;

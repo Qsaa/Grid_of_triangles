@@ -12,10 +12,12 @@ struct ExtendPoint : Point
 
 	ExtendPoint();
 
+	size_t get_id() const;
+
 	std::istream& set(std::istream&);
 	virtual void print() const;
 private:
-	size_t number_;
+	size_t id_;
 	bool accetable_;
 };
 
