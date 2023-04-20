@@ -1,6 +1,6 @@
 #include "ExtendPoint.h"
 
-ExtendPoint::ExtendPoint(): Point(), number_(0), accetable_(false) {}
+ExtendPoint::ExtendPoint(): Point(), id_(0), accetable_(false) {}
 
 size_t ExtendPoint::get_id() const
 {
@@ -10,7 +10,7 @@ size_t ExtendPoint::get_id() const
 std::istream& ExtendPoint::set(std::istream& in)
 {
 	char common;
-	in >> number_ >> common >> set_x()>> common >> set_y()>> common >> set_z();
+	in >> id_ >> common >> set_x()>> common >> set_y()>> common >> set_z();
 	accetable_ = true;
 	return in;
 }
@@ -22,15 +22,15 @@ void ExtendPoint::print() const
 
 std::ostream& operator<<(std::ostream& out, const ExtendPoint& p)
 {
-	return out << "Number: " << p.number_ << " Accateble: " << p.accetable_ << " Point: " << 
+	return out << "Number: " << p.id_ << " Accateble: " << p.accetable_ << " Point: " <<
 		p.get_x() << " " << p.get_y() << ' ' << p.get_z();
 }
 
 std::istream& operator>>(std::istream& in, ExtendPoint& p)
 {
-	//!!!!  а что если данные не корректные
+	char note = '*';
 	char common;
-	if (in >> p.number_ >> common >> p.set_x() >> common >> p.set_y() >> common >> p.set_z())
+	if (in >> p.id_ >> common >> p.set_x() >> common >> p.set_y() >> common >> p.set_z())
 	{
 		p.accetable_ = true;
 	}
