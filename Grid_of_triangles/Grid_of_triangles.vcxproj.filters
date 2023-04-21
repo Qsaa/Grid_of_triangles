@@ -33,6 +33,9 @@
     <ClCompile Include="Algorithm_Point.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="barrel-nodes.xyz">
@@ -50,6 +53,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Algorithm_Point.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

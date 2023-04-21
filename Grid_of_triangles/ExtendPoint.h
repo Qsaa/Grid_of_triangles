@@ -11,6 +11,7 @@ struct ExtendPoint : Point
 	friend std::istream& operator>> (std::istream& in, ExtendPoint& p);
 
 	ExtendPoint();
+	ExtendPoint(double, double, double);
 
 	size_t get_id() const;
 

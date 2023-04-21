@@ -2,6 +2,8 @@
 
 ExtendPoint::ExtendPoint(): Point(), id_(0), pos_(0), accetable_(false) {}
 
+ExtendPoint::ExtendPoint(double x, double y, double z) : Point(x, y, z), id_(0), pos_(0) {}
+
 size_t ExtendPoint::get_id() const
 {
 	return id_;

@@ -133,7 +133,7 @@
     <ClCompile Include="ExtendPoint.cpp" />
     <ClCompile Include="Grid_of_triangles.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Point.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +143,7 @@
   <ItemGroup>
     <ClInclude Include="Algorithm_Point.h" />
     <ClInclude Include="ExtendPoint.h" />
-    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="Point.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

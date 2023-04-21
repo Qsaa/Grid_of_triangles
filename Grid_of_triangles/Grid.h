@@ -3,11 +3,20 @@
 #include "ExtendPoint.h"
 
 #include <vector>
-struct Matrix
+#include <iostream>
+
+
+
+struct Grid
 {
-	Matrix(double x_max, double x_min, double y_max, double y_min, double z_max, double z_min, size_t size, double density);
+	friend std::ostream& operator<<(std::ostream&, const Grid&);
+
+	Grid(double x_max, double x_min, double y_max, double y_min, double z_max, double z_min, size_t size, double density);
 
 	void insert_point(ExtendPoint& point);
+
+	//переделай потом с move семантикой
+	//std::vector<ExtendPoint*>* data_;
 
 private:
 	std::tuple<size_t, size_t, size_t> get_cell_coordinates(const ExtendPoint&) const;

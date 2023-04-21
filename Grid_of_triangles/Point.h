@@ -13,6 +13,7 @@ struct Point
     static bool compare_by_z(const Point* const p1, const Point* const p2);
 
     Point(); 
+    Point(double, double, double);
 
     double get_x() const;
     double get_y() const;

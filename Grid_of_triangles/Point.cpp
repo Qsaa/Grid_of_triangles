@@ -18,6 +18,8 @@ bool Point::compare_by_z(const Point* const p1, const Point* const p2)
 
 Point::Point() : x_(0), y_(0), z_(0) {}
 
+Point::Point(double x, double y, double z) : x_(x), y_(y), z_(z) {}
+
 double Point::get_x() const
 {
 	return x_;
