@@ -6,7 +6,6 @@
 #include <iostream>
 
 
-
 struct Grid
 {
 	friend std::ostream& operator<<(std::ostream&, const Grid&);
@@ -16,7 +15,8 @@ struct Grid
 	void insert_point(ExtendPoint& point);
 
 	//переделай потом с move семантикой
-	//std::vector<ExtendPoint*>* data_;
+	//std::vector<ExtendPoint*>* foo();
+	ExtendPoint* get_closest_point(const ExtendPoint& point);
 
 private:
 	std::tuple<size_t, size_t, size_t> get_cell_coordinates(const ExtendPoint&) const;

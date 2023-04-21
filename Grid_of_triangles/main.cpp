@@ -18,12 +18,6 @@ constexpr auto DENSITY = 10;
 // א בûכמ הוארעף
 //using DENSITY2 = 2;
 
-
-void foo(std::vector<int> v)
-{
-	v[2] = 120;
-};
-
 using namespace std;
 
 int main()
@@ -96,11 +90,6 @@ int main()
 	//	grid.insert_point(pointH);
 	//}
 
-
-	vector<int> v = { 1, 2, 3, 4, 5 };
-	foo(v);
-	cout << v[2] << endl;
-	//cout << grid << endl;
 
 	
 	cout << "The end" << endl;
