@@ -14,10 +14,15 @@ struct ExtendPoint : Point
 
 	size_t get_id() const;
 
+	void set_pos(size_t);
 	std::istream& set(std::istream&);
+	
 	virtual void print() const;
 private:
 	size_t id_;
+	size_t pos_;
+
+	//?????
 	bool accetable_;
 };
 

@@ -1,5 +1,6 @@
 #include "ExtendPoint.h"
 #include "Algorithm_Point.h"
+#include "Matrix.h"
 
 #include <iostream>
 #include <fstream>
@@ -8,11 +9,12 @@
 #include <math.h>
 
 //#define Matrix std::vector<std::vector<std::vector<std::vector<ExtendPoint*>>>>
-using Matrix = std::vector<std::vector<std::vector<std::vector<ExtendPoint*>>>>;
+//using Matrix = std::vector<std::vector<std::vector<std::vector<ExtendPoint*>>>>;
 
 // Амортизацинная плотность точек в подэлементе 
-#define DENSITY 1
-using DENSITY2 = 2;
+constexpr auto DENSITY = 1;
+// а было деашту
+//using DENSITY2 = 2;
 
 using namespace std;
 
@@ -80,23 +82,23 @@ int main()
 	//	cout << el << endl;
 	//}
 	//cout << endl;
-	double len_x = x_max - x_min;
-	double len_y = y_max - y_min;
-	double len_z = z_max - z_min;
+	//double len_x = x_max - x_min;
+	//double len_y = y_max - y_min;
+	//double len_z = z_max - z_min;
 
 	//cout << "x_max: " << x_max << "   x_min: " << x_min << " __ " << x_max - x_min << endl;
 	//cout << "y_max: " << y_max << "   y_min: " << y_min << " __ " << y_max - y_min << endl;
 	//cout << "z_max: " << z_max << "   z_min: " << z_min << " __ " << z_max - z_min << endl;
 
-	double k_x = (len_x * len_x) / (len_y * len_z);
-	double k_y = (len_y * len_y) / (len_x * len_z);
-	double k_z = (len_z * len_z) / (len_x * len_y);
+	//double k_x = (len_x * len_x) / (len_y * len_z);
+	//double k_y = (len_y * len_y) / (len_x * len_z);
+	//double k_z = (len_z * len_z) / (len_x * len_y);
 
-	size_t n_x = round(cbrt((static_cast<double>(points.size()) / DENSITY) * k_x));
-	size_t n_y = round(cbrt((static_cast<double>(points.size()) / DENSITY) * k_y));
-	size_t n_z = round(cbrt((static_cast<double>(points.size()) / DENSITY) * k_z));
+	//size_t n_x = round(cbrt((static_cast<double>(points.size()) / DENSITY) * k_x));
+	//size_t n_y = round(cbrt((static_cast<double>(points.size()) / DENSITY) * k_y));
+	//size_t n_z = round(cbrt((static_cast<double>(points.size()) / DENSITY) * k_z));
 
-	Matrix matrix;
+	Matrix matrix(x_max, x_min, y_max, y_min, z_max, z_min, points.size(), DENSITY);
 
 	vector<int> v(5);
 	cout << v.size() << endl;

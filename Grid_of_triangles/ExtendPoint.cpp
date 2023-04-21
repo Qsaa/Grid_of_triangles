@@ -1,11 +1,17 @@
 #include "ExtendPoint.h"
 
-ExtendPoint::ExtendPoint(): Point(), id_(0), accetable_(false) {}
+ExtendPoint::ExtendPoint(): Point(), id_(0), pos_(0), accetable_(false) {}
 
 size_t ExtendPoint::get_id() const
 {
 	return id_;
 }
+
+void ExtendPoint::set_pos(size_t pos)
+{
+	pos_ = pos;
+}
+
 
 std::istream& ExtendPoint::set(std::istream& in)
 {
