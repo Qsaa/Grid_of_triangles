@@ -1,17 +1,17 @@
 #include "ExtendPoint.h"
 
-ExtendPoint::ExtendPoint(): Point(), id_(0), pos_(0), accetable_(false) {}
+ExtendPoint::ExtendPoint(): Point(), id_(0), n_cell_(0), accetable_(false) {}
 
-ExtendPoint::ExtendPoint(double x, double y, double z) : Point(x, y, z), id_(0), pos_(0) {}
+ExtendPoint::ExtendPoint(double x, double y, double z) : Point(x, y, z), id_(0), n_cell_(0) {}
 
 size_t ExtendPoint::get_id() const
 {
 	return id_;
 }
 
-void ExtendPoint::set_pos(size_t pos)
+void ExtendPoint::set_cell(size_t pos)
 {
-	pos_ = pos;
+	n_cell_ = pos;
 }
 
 
@@ -23,6 +23,12 @@ std::istream& ExtendPoint::set(std::istream& in)
 	return in;
 }
 
+//ExtendPoint* ExtendPoint::get_closest_point()
+//{
+//	n_cell_;
+//	return nullptr;
+//}
+
 void ExtendPoint::print() const
 {
 	std::cout << (*this);
@@ -30,7 +36,7 @@ void ExtendPoint::print() const
 
 std::ostream& operator<<(std::ostream& out, const ExtendPoint& p)
 {
-	return out << "Number: " << p.id_ << " Accateble: " << p.accetable_ << " Point: " <<
+	return out << "Number: " << p.id_ << " Cell: " << p.n_cell_ << " Point: " <<
 		p.get_x() << " " << p.get_y() << ' ' << p.get_z();
 }
 

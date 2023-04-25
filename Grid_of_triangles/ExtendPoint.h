@@ -15,13 +15,14 @@ struct ExtendPoint : Point
 
 	size_t get_id() const;
 
-	void set_pos(size_t);
+	void set_cell(size_t);
 	std::istream& set(std::istream&);
+	///ExtendPoint* get_closest_point();
 	
 	virtual void print() const;
 private:
 	size_t id_;
-	size_t pos_;
+	size_t n_cell_;
 
 	//?????
 	bool accetable_;

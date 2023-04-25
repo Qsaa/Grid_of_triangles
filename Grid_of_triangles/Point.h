@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 struct Point
 {
@@ -30,6 +31,8 @@ struct Point
     virtual void print() const;
 
     double distance(const Point& p) const;
+    //Point* get_closest_point_nn(std::vector<Point*>& vector_points);// const;
+    //Point* get_closest_point_nn(std::vector<std::vector<Point*>>& vector_points);// const;
 
 private:
     double x_;

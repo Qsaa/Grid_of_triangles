@@ -41,8 +41,13 @@ void Grid::insert_point(ExtendPoint& point)
 	auto [x, y, z] = get_cell_coordinates(point);
 	size_t i = get_cell_number(x, y, z);
 
-	point.set_pos(i);
+	point.set_cell(i);
 	data_[i].push_back(&point);
+}
+
+std::vector<ExtendPoint*>* Grid::get_points_cell(size_t n_cell)
+{
+	return &data_[n_cell];
 }
 
 std::tuple<size_t, size_t, size_t> Grid::get_cell_coordinates(const ExtendPoint& point) const
@@ -92,19 +97,20 @@ std::ostream& operator<<(std::ostream& out, const Grid& grid)
 	size_t max = grid.data_[0].size();
 	for (auto& vector_point : grid.data_)
 	{
-		//out << "Cell number " << i << "\n";	
-		////for (auto pointer : vector_point)
-		////{
-		////	out << *pointer << "\n";
-		////}
-		//out << "number of points: ";
-		//out << vector_point.size() << "\n";
+		out << "Cell number " << i << "\n";	
+		for (auto pointer : vector_point)
+		{
+			out << *pointer << "\n";
+		}
+		out << "number of points: ";
+		out << vector_point.size() << "\n";
 
 		if (max < vector_point.size())
 		{
 			max = vector_point.size();
 		}
 		++i;
+		break;
 	}
 	out << "Statictic:\n";
 	out << "Maximum number of points per cell: " << max << "\n";

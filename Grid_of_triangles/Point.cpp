@@ -75,6 +75,38 @@ double Point::distance(const Point& p) const
 	return sqrt(pow((x_ - p.x_), 2) + pow((y_ - p.y_), 2) + pow((z_ - p.z_), 2));
 }
 
+//Point* Point::get_closest_point_nn(std::vector<Point*>& vector_points) //const
+//{
+//	if (vector_points.empty())
+//	{
+//		return nullptr;
+//	}
+//
+//	Point* closest_Point = vector_points[0];
+//	double min_distance = distance(*(vector_points[0]));
+//	for (size_t i = 1; i < vector_points.size(); ++i)
+//	{
+//		double new_distance = distance(*(vector_points[0]));
+//		if (min_distance > new_distance)
+//		{
+//			min_distance = new_distance;
+//		}
+//	}
+//	return closest_Point;
+//}
+
+//Point* get_closest_point_nn(std::vector< std::vector<Point*> >& vector_points) //const
+//{
+//	if (vector_points.empty())
+//	{
+//		return nullptr;
+//	}
+//	get_closest_point_nn(vector_points[0]);
+//	return nullptr;
+//}
+
+
+
 std::ostream& operator<< (std::ostream& out, const Point& p)
 {
 	return out << p.x_ << ' ' << p.y_ << ' ' << p.z_;

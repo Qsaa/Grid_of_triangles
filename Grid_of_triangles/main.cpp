@@ -47,7 +47,7 @@ int main()
 	y_max = y_min = point.get_y();
 	z_max = z_min = point.get_z();
 
-	//while(input_file >> point)
+	while(input_file >> point)
 	{
 		if (x_max < point.get_x())
 		{
@@ -83,13 +83,23 @@ int main()
 	cout << "z_max: " << z_max << "   z_min: " << z_min << " __ " << z_max - z_min << endl;
 
 	
-	//Grid grid(x_max, x_min, y_max, y_min, z_max, z_min, points.size(), DENSITY);
+	Grid grid(x_max, x_min, y_max, y_min, z_max, z_min, points.size(), DENSITY);
 
-	//for (auto& pointH : points)
-	//{
-	//	grid.insert_point(pointH);
-	//}
+	for (auto& pointH : points)
+	{
+		grid.insert_point(pointH);
+	}
 
+	auto va = grid.get_points_cell(0);
+
+	cout << grid << endl;
+
+	for (auto& a : *va)
+	{
+		cout << *a << endl;
+	}
+
+	//points[0].get_closest_point_nn();
 
 	
 	cout << "The end" << endl;
