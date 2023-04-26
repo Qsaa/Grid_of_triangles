@@ -33,6 +33,21 @@ Grid::Grid(double x_max, double x_min, double y_max, double y_min, double z_max,
 	section_y_ = len_y / n_y_;
 	section_z_ = len_z / n_z_;
 
+	for (size_t i = 0; i <= n_x_; ++i)
+	{
+		boarder_x_.push_back(x_min_ + section_x_ * i);
+	}
+
+	for (size_t i = 0; i <= n_y_; ++i)
+	{
+		boarder_y_.push_back(x_min_ + section_x_ * i);
+	}
+
+	for (size_t i = 0; i <= n_z_; ++i)
+	{
+		boarder_z_.push_back(x_min_ + section_x_ * i);
+	}
+
 	data_.resize(n_x_ * n_y_ * n_z_);
 }
 
@@ -45,9 +60,9 @@ void Grid::insert_point(ExtendPoint& point)
 	data_[i].push_back(&point);
 }
 
-std::vector<ExtendPoint*>* Grid::get_points_cell(size_t n_cell)
+std::vector<ExtendPoint*>& Grid::get_points_cell(size_t n_cell)
 {
-	return &data_[n_cell];
+	return data_[n_cell];
 }
 
 std::tuple<size_t, size_t, size_t> Grid::get_cell_coordinates(const ExtendPoint& point) const

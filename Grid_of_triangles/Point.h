@@ -31,7 +31,11 @@ struct Point
     virtual void print() const;
 
     double distance(const Point& p) const;
-    //Point* get_closest_point_nn(std::vector<Point*>& vector_points);// const;
+    //Point* get_closest_point_nn(std::vector<Point*>::iterator vector_points);
+    //template<typename T>
+    //oint* get_closest_point_nn(const T& vector_points);
+
+    //Point* get_closest_point_nn( Point* vector_points);// const;
     //Point* get_closest_point_nn(std::vector<std::vector<Point*>>& vector_points);// const;
 
 private:
@@ -40,3 +44,23 @@ private:
     double z_;
 };
 
+//template<typename T>
+//inline Point* Point::get_closest_point_nn(const T& vector_points)
+//{
+//    if (vector_points.empty())
+//    {
+//        return nullptr;
+//    }
+//
+//    Point* closest_Point = vector_points[0];
+//    double min_distance = distance(*(vector_points[0]));
+//    for (size_t i = 1; i < vector_points.size(); ++i)
+//    {
+//        double new_distance = distance(*(vector_points[0]));
+//        if (min_distance > new_distance)
+//        {
+//            min_distance = new_distance;
+//        }
+//    }
+//    return closest_Point;
+//}

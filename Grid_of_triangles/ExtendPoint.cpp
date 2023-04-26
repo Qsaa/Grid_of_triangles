@@ -9,6 +9,11 @@ size_t ExtendPoint::get_id() const
 	return id_;
 }
 
+size_t ExtendPoint::get_n_cell() const
+{
+	return n_cell_;
+}
+
 void ExtendPoint::set_cell(size_t pos)
 {
 	n_cell_ = pos;
@@ -23,11 +28,31 @@ std::istream& ExtendPoint::set(std::istream& in)
 	return in;
 }
 
-//ExtendPoint* ExtendPoint::get_closest_point()
+ExtendPoint* ExtendPoint::get_closest_point_nn(const Cell& points) const
+{
+	ExtendPoint* closest_Point = nullptr;
+	double min_distance = -1;
+	for (ExtendPoint* point : points)
+	{
+		double new_distance = distance(*point);
+		if (id_ != point->get_id())
+		{
+			if (new_distance < min_distance || min_distance < 0)
+			{
+				min_distance = new_distance;
+				closest_Point = point;
+			}
+		}
+	}
+    return closest_Point;
+}
+
+//double ExtendPoint::distance_to_wall(const Grid& grid) const
 //{
-//	n_cell_;
-//	return nullptr;
+//	return 0.0;
 //}
+
+
 
 void ExtendPoint::print() const
 {

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ExtendPoint.h"
-#include "Cell.h"
 
 #include <vector>
 #include <iostream>
@@ -15,7 +14,7 @@ struct Grid
 
 	void insert_point(ExtendPoint& point);
 
-	std::vector<ExtendPoint*>* get_points_cell(size_t n_cell);
+	std::vector<ExtendPoint*>& get_points_cell(size_t n_cell);
 	//переделай потом с move семантикой
 	//std::vector<ExtendPoint*>* foo();
 	//ExtendPoint* get_closest_point(const ExtendPoint& point);
@@ -43,7 +42,11 @@ private:
 	double section_y_;
 	double section_z_;
 
+	std::vector<double> boarder_x_;
+	std::vector<double> boarder_y_;
+	std::vector<double> boarder_z_;
+
 	std::vector<std::vector<ExtendPoint*>> data_;
-	std::vector<Cell> data_0;
+
 };
 

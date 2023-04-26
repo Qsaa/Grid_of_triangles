@@ -75,7 +75,7 @@ double Point::distance(const Point& p) const
 	return sqrt(pow((x_ - p.x_), 2) + pow((y_ - p.y_), 2) + pow((z_ - p.z_), 2));
 }
 
-//Point* Point::get_closest_point_nn(std::vector<Point*>& vector_points) //const
+//Point* Point::get_closest_point_nn(const std::vector<Point*>& vector_points) const
 //{
 //	if (vector_points.empty())
 //	{

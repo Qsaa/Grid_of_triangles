@@ -1,9 +1,12 @@
 #pragma once
 
 #include "Point.h"
+#include "Grid.h" /// ??????????????????????
 
 #include <string>
 
+struct ExtendPoint; //??
+using Cell = std::vector<ExtendPoint*>; //??
 
 struct ExtendPoint : Point
 {
@@ -14,10 +17,13 @@ struct ExtendPoint : Point
 	ExtendPoint(double, double, double);
 
 	size_t get_id() const;
+	size_t get_n_cell() const;
 
 	void set_cell(size_t);
 	std::istream& set(std::istream&);
-	///ExtendPoint* get_closest_point();
+	
+	ExtendPoint* get_closest_point_nn(const Cell&) const;
+	//double distance_to_wall(const Grid& grid) const; //??
 	
 	virtual void print() const;
 private:

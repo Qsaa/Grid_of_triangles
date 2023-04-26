@@ -90,18 +90,29 @@ int main()
 		grid.insert_point(pointH);
 	}
 
-	auto va = grid.get_points_cell(0);
+	//auto va = grid.get_points_cell(0);
 
-	cout << grid << endl;
+	//cout << grid << endl;
 
-	for (auto& a : *va)
-	{
-		cout << *a << endl;
-	}
+	//for (auto& a : *va)
+	//{
+	//	cout << *a << endl;
+	//}
 
-	//points[0].get_closest_point_nn();
 
+	size_t n_cell = points[0].get_n_cell(); // получаем номер €чейки
+	Cell&  pointer_on_cell = grid.get_points_cell(n_cell); // получаем указатель на вектор точек в данной €чейки
+	std::vector<Point*>* ppp = static_cast< std::vector<Point*>* > (pointer_on_cell);
+	ExtendPoint* p1 =  points[0].get_closest_point_nn(pointer_on_cell); //
+	cout << points[0] << endl;
+	cout << *p1 << endl;
 	
 	cout << "The end" << endl;
 	return 0;
+}
+
+
+Point make_middle_point(const Point& p1, const Point& p2)
+{
+	return Point((p1.get_x() + p2.get_x()) / 2.0, (p1.get_y() + p2.get_y()) / 2.0, (p1.get_z() + p2.get_z()) / 2.0);
 }
