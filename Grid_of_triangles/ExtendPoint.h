@@ -1,12 +1,11 @@
 #pragma once
 
 #include "Point.h"
-#include "Grid.h" /// ??????????????????????
 
 #include <string>
 
-struct ExtendPoint; //??
-using Cell = std::vector<ExtendPoint*>; //??
+struct ExtendPoint;
+using Cell = std::vector<ExtendPoint*>;
 
 struct ExtendPoint : Point
 {

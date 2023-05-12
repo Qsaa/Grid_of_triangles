@@ -13,8 +13,8 @@ struct Grid
 	Grid(double x_max, double x_min, double y_max, double y_min, double z_max, double z_min, size_t size, double density);
 
 	void insert_point(ExtendPoint& point);
-
 	std::vector<ExtendPoint*>& get_points_cell(size_t n_cell);
+	
 	//переделай потом с move семантикой
 	//std::vector<ExtendPoint*>* foo();
 	//ExtendPoint* get_closest_point(const ExtendPoint& point);
@@ -46,7 +46,7 @@ private:
 	std::vector<double> boarder_y_;
 	std::vector<double> boarder_z_;
 
-	std::vector<std::vector<ExtendPoint*>> data_;
+	std::vector<Cell> data_;
 
 };
 
