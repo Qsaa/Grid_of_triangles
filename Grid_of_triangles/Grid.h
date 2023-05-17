@@ -2,6 +2,7 @@
 
 #include "ExtendPoint.h"
 #include "Cell.h"
+#include "Rectangular_Prallelepiped.h"
 
 #include <vector>
 #include <iostream>
@@ -11,7 +12,7 @@ struct Grid
 {
 	friend std::ostream& operator<<(std::ostream&, const Grid&);
 
-	Grid(double x_max, double x_min, double y_max, double y_min, double z_max, double z_min, size_t size, double density);
+	Grid(const Rectangular_Prallelepiped& boarder, size_t size, double density);
 
 	void insert_point(ExtendPoint& point);
 	std::vector<ExtendPoint*>& get_points_cell(size_t n_cell);
@@ -34,6 +35,8 @@ private:
 	
 	double z_max_;
 	double z_min_; 
+
+	Rectangular_Prallelepiped boarder_;
 
 	size_t n_x_;
 	size_t n_y_;

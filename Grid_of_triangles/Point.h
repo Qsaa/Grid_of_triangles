@@ -1,8 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <algorithm>
-#include <vector>
 
 struct Point
 {
@@ -33,7 +31,7 @@ struct Point
     double distance(const Point& p) const;
     //Point* get_closest_point_nn(std::vector<Point*>::iterator vector_points);
     //template<typename T>
-    //oint* get_closest_point_nn(const T& vector_points);
+    //Point* get_closest_point_nn(const T& vector_points);
 
     //Point* get_closest_point_nn( Point* vector_points);// const;
     //Point* get_closest_point_nn(std::vector<std::vector<Point*>>& vector_points);// const;

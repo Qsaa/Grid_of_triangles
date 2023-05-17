@@ -1,5 +1,16 @@
 #include "Point.h"
 
+std::ostream& operator<< (std::ostream& out, const Point& p)
+{
+	return out << p.x_ << ' ' << p.y_ << ' ' << p.z_;
+}
+
+std::istream& operator>> (std::istream& in, Point& p)
+{
+	in >> p.x_ >> p.y_ >> p.z_;
+	return in;
+}
+
 bool Point::compare_by_x(const Point* const p1, const Point* const p2)
 {
 	return p1->get_x() < p2->get_x();
@@ -104,16 +115,3 @@ double Point::distance(const Point& p) const
 //	get_closest_point_nn(vector_points[0]);
 //	return nullptr;
 //}
-
-
-
-std::ostream& operator<< (std::ostream& out, const Point& p)
-{
-	return out << p.x_ << ' ' << p.y_ << ' ' << p.z_;
-}
-
-std::istream& operator>> (std::istream& in, Point& p)
-{
-	in >> p.x_ >> p.y_ >> p.z_;
-	return in;
-}
