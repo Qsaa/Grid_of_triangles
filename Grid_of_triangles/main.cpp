@@ -100,12 +100,12 @@ int main()
 	//}
 
 
-	size_t n_cell = points[0].get_n_cell(); // получаем номер €чейки
-	Cell&  pointer_on_cell = grid.get_points_cell(n_cell); // получаем указатель на вектор точек в данной €чейки
+	//size_t n_cell = points[0].get_n_cell(); // получаем номер €чейки
+	//Cell&  pointer_on_cell = grid.get_points_cell(n_cell); // получаем указатель на вектор точек в данной €чейки
 	//std::vector<Point*>* ppp = static_cast< std::vector<Point*>* > (pointer_on_cell);
-	ExtendPoint* p1 =  points[0].get_closest_point_nn(pointer_on_cell); //
-	cout << points[0] << endl;
-	cout << *p1 << endl;
+	//ExtendPoint* p1 =  points[0].get_closest_point_nn(pointer_on_cell); //
+	//cout << points[0] << endl;
+	//cout << *p1 << endl;
 	
 	cout << "The end" << endl;
 	return 0;

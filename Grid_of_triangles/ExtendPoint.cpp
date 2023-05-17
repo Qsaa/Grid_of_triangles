@@ -1,6 +1,6 @@
 #include "ExtendPoint.h"
 
-ExtendPoint::ExtendPoint(): Point(), id_(0), n_cell_(0), accetable_(false) {}
+ExtendPoint::ExtendPoint(): Point(), id_(0), n_cell_(0){}
 
 ExtendPoint::ExtendPoint(double x, double y, double z) : Point(x, y, z), id_(0), n_cell_(0) {}
 
@@ -24,15 +24,14 @@ std::istream& ExtendPoint::set(std::istream& in)
 {
 	char common;
 	in >> id_ >> common >> set_x()>> common >> set_y()>> common >> set_z();
-	accetable_ = true;
 	return in;
 }
 
-ExtendPoint* ExtendPoint::get_closest_point_nn(const Cell& points) const
+ExtendPoint* ExtendPoint::get_closest_point_in_cell_nn(const Cell& points) const
 {
 	ExtendPoint* closest_Point = nullptr;
 	double min_distance = -1;
-	for (ExtendPoint* point : points)
+	for (ExtendPoint* point : points.)
 	{
 		double new_distance = distance(*point);
 		if (id_ != point->get_id())
