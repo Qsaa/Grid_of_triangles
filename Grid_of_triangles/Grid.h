@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ExtendPoint.h"
+#include "Cell.h"
 
 #include <vector>
 #include <iostream>
