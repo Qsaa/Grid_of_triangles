@@ -1,61 +1,107 @@
-#include "Point.h"
 #include "Cell.h"
+#include "Point.h"
 
+
+Cell::Cell() : i_(0), xyz_(), boarder_()
+{
+}
+
+void Cell::set_i(size_t i)
+{
+	i_ = i;
+}
+
+void Cell::set_i_xyz(const XYZ_number& xyz)
+{
+	xyz_.i_x_ = xyz.i_x_;
+	xyz_.i_y_ = xyz.i_y_;
+	xyz_.i_z_ = xyz.i_z_;
+}
+
+void Cell::set_i_xyz(size_t i_x, size_t i_y, size_t i_z)
+{
+	xyz_.i_x_ = i_x;
+	xyz_.i_y_ = i_y;
+	xyz_.i_z_ = i_z;
+}
+
+void Cell::set_boarder(const Rectangular_Prallelepiped& boarder)
+{
+	boarder_.x_max_ = boarder.x_max_;
+	boarder_.x_min_ = boarder.x_min_;
+
+	boarder_.y_max_ = boarder.y_max_;
+	boarder_.y_min_ = boarder.y_min_;
+	
+	boarder_.z_max_ = boarder.z_max_;
+	boarder_.z_min_ = boarder.z_min_;
+}
 
 size_t Cell::get_i() const
 {
 	return i_;
 }
 
+XYZ_number& Cell::get_xyz()
+{
+	return xyz_;
+}
+
 std::tuple<size_t, size_t, size_t> Cell::get_xyz() const
 {
-	return {i_x_, i_y_, i_z_ };
+	return {xyz_.i_x_, xyz_.i_y_, xyz_.i_z_ };
 }
 
 double Cell::get_x_min() const
 {
-	return x_min_;
+	return boarder_.x_min_;
 }
 
 double Cell::get_x_max() const
 {
-	return x_max_;
+	return boarder_.x_max_;
 }
 
 double Cell::get_y_min() const
 {
-	return y_min_;
+	return boarder_.y_min_;
 }
 
 double Cell::get_y_max() const
 {
-	return y_max_;
+	return boarder_.y_max_;
 }
 
 double Cell::get_z_min() const
 {
-	return z_min_;
+	return boarder_.z_min_;
 }
 
 double Cell::get_z_max() const
 {
-	return z_max_;
+	return boarder_.z_max_;
 }
 
-std::vector<ExtendPoint>& Cell::get_points() const;
+const std::vector<ExtendPoint*>& Cell::get_points() const
 {
 	return data_;
 }
 
-double Cell::distance_to_point(Point* point)
+std::vector<ExtendPoint*>& Cell::get_points()
 {
-	double distance_by_x = distance_to_point_one_dimensions(point->get_x(), x_min_, x_max_);
-	double distance_by_y = distance_to_point_one_dimensions(point->get_y(), y_min_, y_max_);
-	double distance_by_z = distance_to_point_one_dimensions(point->get_z(), z_min_, z_max_);
+	return data_;
+}
+
+
+double Cell::distance_to_point(const Point& point) const
+{
+	double distance_by_x = distance_to_point_one_dimensions(point.get_x(), boarder_.x_min_, boarder_.x_max_);
+	double distance_by_y = distance_to_point_one_dimensions(point.get_y(), boarder_.y_min_, boarder_.y_max_);
+	double distance_by_z = distance_to_point_one_dimensions(point.get_z(), boarder_.z_min_, boarder_.z_max_);
 	return sqrt(distance_by_x * distance_by_x + distance_by_y * distance_by_y + distance_by_z * distance_by_z);
 }
 
-double Cell::distance_to_point_one_dimensions(double p, double min, double max)
+double Cell::distance_to_point_one_dimensions(double p, double min, double max) const
 {
 	if ((min <= p && p <= max) || (max <= p && p <= min))
 	{

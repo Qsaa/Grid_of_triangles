@@ -2,14 +2,14 @@
 
 ExtendPoint::ExtendPoint(): Point(), id_(0), n_cell_(0){}
 
-ExtendPoint::ExtendPoint(double x, double y, double z) : Point(x, y, z), id_(0), n_cell_(0) {}
+ExtendPoint::ExtendPoint(double x, double y, double z) : Point(x, y, z), id_(0), n_cell_(-1) {}
 
 size_t ExtendPoint::get_id() const
 {
 	return id_;
 }
 
-size_t ExtendPoint::get_n_cell() const
+int ExtendPoint::get_n_cell() const
 {
 	return n_cell_;
 }
@@ -27,11 +27,11 @@ std::istream& ExtendPoint::set(std::istream& in)
 	return in;
 }
 
-ExtendPoint* ExtendPoint::get_closest_point_in_cell_nn(const Cell& points) const
+ExtendPoint* ExtendPoint::get_closest_point_nn(std::vector<ExtendPoint*>& points) //const
 {
 	ExtendPoint* closest_Point = nullptr;
 	double min_distance = -1;
-	for (ExtendPoint* point : points.)
+	for (ExtendPoint* point : points)
 	{
 		double new_distance = distance(*point);
 		if (id_ != point->get_id())
@@ -45,12 +45,6 @@ ExtendPoint* ExtendPoint::get_closest_point_in_cell_nn(const Cell& points) const
 	}
     return closest_Point;
 }
-
-//double ExtendPoint::distance_to_wall(const Grid& grid) const
-//{
-//	return 0.0;
-//}
-
 
 
 void ExtendPoint::print() const
@@ -68,13 +62,14 @@ std::istream& operator>>(std::istream& in, ExtendPoint& p)
 {
 	char note = '*';
 	char common;
-	if (in >> p.id_ >> common >> p.set_x() >> common >> p.set_y() >> common >> p.set_z())
+	in >> p.id_ >> common >> p.set_x() >> common >> p.set_y() >> common >> p.set_z();
+	/*if (in >> p.id_ >> common >> p.set_x() >> common >> p.set_y() >> common >> p.set_z())
 	{
 		p.accetable_ = true;
 	}
 	else
 	{
 		p.accetable_ = false;
-	}
+	}*/
 	return in;
 }

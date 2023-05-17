@@ -1,15 +1,24 @@
 #pragma once
 
+#include "ExtendPoint.h"
+#include "Rectangular_Prallelepiped.h"
+
 #include<vector>
 #include<cmath>
 
-struct Point;
-struct ExtendPoint;
-
 struct Cell
 {
+	// Написать конструкторы!!!! TODO
+	Cell();
+
+	void set_i(size_t);
+	void set_i_xyz(const XYZ_number&);
+	void set_i_xyz(size_t, size_t, size_t);
+	void set_boarder(const Rectangular_Prallelepiped&);
+
 	size_t get_i() const;
-	std::tuple<size_t, size_t, size_t> get_xyz() const;
+	std::tuple<size_t, size_t, size_t> get_xyz() const; // TODO можно переделать в структуру
+	XYZ_number& get_xyz(); // можно переделать в структуру
 	
 	double get_x_min() const;
 	double get_x_max() const;
@@ -18,23 +27,23 @@ struct Cell
 	double get_z_min() const;
 	double get_z_max() const;
 
-	std::vector<ExtendPoint>& get_points();
+	const std::vector<ExtendPoint*>& get_points() const;
+	std::vector<ExtendPoint*>& get_points();
 
-	double distance_to_point(Point* point) const;
+	double distance_to_point(const Point& point) const;
 
 private:
-	double distance_to_point_one_dimensions(double p, double min, double max);
+	double distance_to_point_one_dimensions(double p, double min, double max) const;
 private:
-	size_t i_;
-	size_t i_x_;
-	size_t i_y_;
-	size_t i_z_;
+	int i_;
 
-	double x_min_;
-	double x_max_;
-	double y_min_;
-	double y_max_;
-	double z_min_;
-	double z_max_;
-	std::vector<ExtendPoint> data_;
+	//int i_x_;
+	//int i_y_;
+	//int i_z_;
+
+	XYZ_number xyz_;
+
+	Rectangular_Prallelepiped boarder_;
+
+	std::vector<ExtendPoint*> data_;
 };
