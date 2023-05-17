@@ -15,16 +15,16 @@ struct Grid
 	Grid(const Rectangular_Prallelepiped& boarder, size_t size, double density);
 
 	void insert_point(ExtendPoint& point);
-	std::vector<ExtendPoint*>& get_points_cell(size_t n_cell);
+	//std::vector<ExtendPoint*>& get_points_cell(size_t n_cell);
 	
 	//переделай потом с move семантикой
 	//std::vector<ExtendPoint*>* foo();
 	//ExtendPoint* get_closest_point(const ExtendPoint& point);
 
 private:
-	std::tuple<size_t, size_t, size_t> get_cell_coordinates(const ExtendPoint&) const;
-	std::tuple<size_t, size_t, size_t> get_cell_coordinates(size_t i) const;
-	size_t get_cell_number(size_t, size_t, size_t) const;
+	//std::tuple<size_t, size_t, size_t> get_cell_coordinates(const ExtendPoint&) const;
+	//std::tuple<size_t, size_t, size_t> get_cell_coordinates(size_t i) const;
+	//size_t get_cell_number(size_t, size_t, size_t) const;
 
 private:
 	/*double x_max_;
