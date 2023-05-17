@@ -15,6 +15,8 @@ struct Cell
 	void set_i_xyz(const XYZ_number&);
 	void set_i_xyz(size_t, size_t, size_t);
 	void set_boarder(const Rectangular_Prallelepiped&);
+	void set_boarder(double, double, double, double, double, double);
+
 
 	size_t get_i() const;
 	std::tuple<size_t, size_t, size_t> get_xyz() const; // TODO можно переделать в структуру
@@ -36,7 +38,6 @@ private:
 	double distance_to_point_one_dimensions(double p, double min, double max) const;
 private:
 	int i_;
-
 	//int i_x_;
 	//int i_y_;
 	//int i_z_;
