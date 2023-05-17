@@ -3,17 +3,17 @@
 std::ostream& operator<<(std::ostream& out, const Grid& grid)
 {
 	out << "Boarder of this Grid\n";
-	out << "x_max: " << grid.x_max_<<"\n";
-	out << "x_min: " << grid.x_max_<<"\n";
-	out << "y_max: " << grid.y_max_<<"\n";
-	out << "y_min: " << grid.y_min_<<"\n";
-	out << "z_max: " << grid.z_max_<<"\n";
-	out << "z_min: " << grid.z_min_<<"\n";
+	out << "x_max: " << grid.boarder_.x_max_<<"\n";
+	out << "x_min: " << grid.boarder_.x_max_<<"\n";
+	out << "y_max: " << grid.boarder_.y_max_<<"\n";
+	out << "y_min: " << grid.boarder_.y_min_<<"\n";
+	out << "z_max: " << grid.boarder_.z_max_<<"\n";
+	out << "z_min: " << grid.boarder_.z_min_<<"\n";
 
 	out << "Number of cells:\n";
-	out << "X: " << grid.n_x_ << "\n";
-	out << "Y: " << grid.n_y_ << "\n";
-	out << "Z: " << grid.n_z_ << "\n";
+	out << "X: " << grid.n_cell_x_ << "\n";
+	out << "Y: " << grid.n_cell_y_ << "\n";
+	out << "Z: " << grid.n_cell_z_ << "\n";
 
 	out << "Lenght of each section:\n";
 	out << "X: " << grid.section_x_ << "\n";
@@ -49,70 +49,66 @@ std::ostream& operator<<(std::ostream& out, const Grid& grid)
 
 Grid::Grid(const Rectangular_Prallelepiped& boarder, size_t number_of_points, double density = 10.0)
 {
+	// increasing on margin error the boarder of this grid
 	double delta;
 	delta = (boarder.x_max_ - boarder.x_min_) * 0.01;
-	x_max_ = boarder.x_max_ + delta;
-	x_min_ = boarder.x_min_ - delta;
+	boarder_.x_max_ = boarder.x_max_ + delta;
+	boarder_.x_min_ = boarder.x_min_ - delta;
 
 	delta = (boarder.y_max_ - boarder.y_min_) * 0.01;
-	y_max_ = boarder.y_max_ + delta;
-	y_min_ = boarder.y_min_ - delta;
+	boarder_.y_max_ = boarder.y_max_ + delta;
+	boarder_.y_min_ = boarder.y_min_ - delta;
 	
 	delta = (boarder.z_max_ - boarder.z_min_) * 0.01;
-	z_max_ = boarder.z_max_ + delta;
-	z_min_ = boarder.z_min_ - delta;
+	boarder_.z_max_ = boarder.z_max_ + delta;
+	boarder_.z_min_ = boarder.z_min_ - delta;
 
-	// len is only positive
-	double len_x = x_max_ - x_min_; 
-	double len_y = y_max_ - y_min_;
-	double len_z = z_max_ - z_min_;
+	// lenght of this grid, can be only positive
+	double len_x = boarder_.x_max_ - boarder_.x_min_;
+	double len_y = boarder_.y_max_ - boarder_.y_min_;
+	double len_z = boarder_.z_max_ - boarder_.z_min_;
 
+	//getting a coefficient to make each cell a cube
 	double k_x = (len_x * len_x) / (len_y * len_z);
 	double k_y = (len_y * len_y) / (len_x * len_z);
 	double k_z = (len_z * len_z) / (len_x * len_y);
 
-	n_x_ = static_cast<size_t>(round(cbrt((static_cast<double>(number_of_points) / density) * k_x)));
-	n_y_ = static_cast<size_t>(round(cbrt((static_cast<double>(number_of_points) / density) * k_y)));
-	n_z_ = static_cast<size_t>(round(cbrt((static_cast<double>(number_of_points) / density) * k_z)));
+	//number of section by x, y, z
+	n_cell_x_ = static_cast<size_t>(round(cbrt((static_cast<double>(number_of_points) / density) * k_x)));
+	n_cell_y_ = static_cast<size_t>(round(cbrt((static_cast<double>(number_of_points) / density) * k_y)));
+	n_cell_z_ = static_cast<size_t>(round(cbrt((static_cast<double>(number_of_points) / density) * k_z)));
 
-	section_x_ = len_x / n_x_;
-	section_y_ = len_y / n_y_;
-	section_z_ = len_z / n_z_;
+	// lenght of section by x, y, z
+	section_x_ = len_x / n_cell_x_;
+	section_y_ = len_y / n_cell_y_;
+	section_z_ = len_z / n_cell_z_;
 
-	/*for (size_t i = 0; i <= n_x_; ++i)
-	{
-		boarder_x_.push_back(x_min_ + section_x_ * i);
-	}
-
-	for (size_t i = 0; i <= n_y_; ++i)
-	{
-		boarder_y_.push_back(x_min_ + section_x_ * i);
-	}
-
-	for (size_t i = 0; i <= n_z_; ++i)
-	{
-		boarder_z_.push_back(x_min_ + section_x_ * i);
-	}*/
-
-	//data_.reserve(n_x_ * n_y_ * n_z_);
-	data_.resize(n_x_ * n_y_ * n_z_);
+	// define number of cells
+	//data_.reserve(n_x_ * n_y_ * n_z_); ???
+	data_.resize(n_cell_x_ * n_cell_y_ * n_cell_z_);
 
 	int n = 0;
-	for (size_t x = 0; x < n_x_; ++x)
+	for (size_t i_x = 0; i_x < n_cell_x_; ++i_x)
 	{
-		for (size_t y = 0; y < n_y_; ++y)
+		for (size_t i_y = 0; i_y < n_cell_y_; ++i_y)
 		{
-			for (size_t z = 0; z < n_z_; ++z)
+			for (size_t i_z = 0; i_z < n_cell_z_; ++i_z)
 			{
 				data_[n].set_i(n);
 				//data_[n].set_i_xyz(x, y, z);
-				data_[n].set_i_xyz(XYZ_number(x, y, z));
+				data_[n].set_i_xyz(XYZ_number(i_x, i_y, i_z));
+				data_[n].set_boarder(
+					(boarder_.x_min_ + i_x * section_x_),		// x_min
+					(boarder_.x_min_ + (i_x + 1) * section_x_), // x_max
+					(boarder_.y_min_ + i_y * section_y_),		// y_max
+					(boarder_.y_min_ + (i_y + 1) * section_y_), // y_min
+					(boarder_.z_min_ + i_z * section_z_),		// z_max
+					(boarder_.z_min_ + (i_z + 1) * section_z_)  // z_min
+					);
 				++n;
 			}
 		}
 	}
-
-	std::cout << "Here" << std::endl;
 }
 
 

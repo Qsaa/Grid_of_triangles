@@ -37,6 +37,18 @@ void Cell::set_boarder(const Rectangular_Prallelepiped& boarder)
 	boarder_.z_min_ = boarder.z_min_;
 }
 
+void Cell::set_boarder(double x_min, double x_max, double y_min, double y_max, double z_min, double z_max)
+{
+	boarder_.x_min_ = x_min;
+	boarder_.x_max_ = x_max;
+
+	boarder_.y_min_ = y_min;
+	boarder_.y_max_ = y_max;
+
+	boarder_.z_min_ = z_min;
+	boarder_.z_max_ = z_max;
+}
+
 size_t Cell::get_i() const
 {
 	return i_;
