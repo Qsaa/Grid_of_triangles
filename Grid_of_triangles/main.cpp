@@ -16,14 +16,13 @@
 // Амортизацинная плотность точек в подэлементе 
 constexpr auto DENSITY = 10;
 
-
+using namespace std;
 
 int main()
 {
 	//TODO
 	//Выполнить проверку если количество точек больше, чем max_int бросить исключение
-	using namespace std;
-
+	
 	//ifstream input_file("test_data.txt");
 	ifstream input_file("barrel-nodes.xyz");
 	if (!input_file.is_open())
@@ -83,17 +82,17 @@ int main()
 		points.push_back(point);
 	}
 
-	//cout << "x_max: " << x_max << "   x_min: " << x_min << " __ " << x_max - x_min << endl;
-	//cout << "y_max: " << y_max << "   y_min: " << y_min << " __ " << y_max - y_min << endl;
-	//cout << "z_max: " << z_max << "   z_min: " << z_min << " __ " << z_max - z_min << endl;
+	cout << "x_max: " << boarder.x_max_ << "   x_min: " << boarder.x_min_ << " __ " << boarder.x_max_ - boarder.x_min_ << endl;
+	cout << "y_max: " << boarder.y_max_ << "   y_min: " << boarder.y_min_ << " __ " << boarder.y_max_ - boarder.y_min_ << endl;
+	cout << "z_max: " << boarder.z_max_ << "   z_min: " << boarder.z_min_ << " __ " << boarder.z_max_ - boarder.z_min_ << endl;
 
 
 	Grid grid(boarder, points.size(), DENSITY);
 
-	//for (auto& pointH : points)
-	//{
-	//	grid.insert_point(pointH);
-	//}
+	for (auto& pointH : points)
+	{
+		//grid.insert_point(pointH);
+	}
 
 	//auto va = grid.get_points_cell(0);
 

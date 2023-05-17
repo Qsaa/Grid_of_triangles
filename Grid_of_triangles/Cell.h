@@ -17,10 +17,11 @@ struct Cell
 	void set_boarder(const Rectangular_Prallelepiped&);
 	void set_boarder(double, double, double, double, double, double);
 
+	void add_extend_point(ExtendPoint*);
 
 	size_t get_i() const;
-	std::tuple<size_t, size_t, size_t> get_xyz() const; // TODO можно переделать в структуру
-	XYZ_number& get_xyz(); // можно переделать в структуру
+	std::tuple<size_t, size_t, size_t> get_xyz() const; // CHECK можно убрать один из методов
+	XYZ_number& get_xyz(); // CHECK можно убрать один из методов
 	
 	double get_x_min() const;
 	double get_x_max() const;
@@ -41,6 +42,7 @@ private:
 	//int i_x_;
 	//int i_y_;
 	//int i_z_;
+	size_t n_point;
 
 	XYZ_number xyz_;
 

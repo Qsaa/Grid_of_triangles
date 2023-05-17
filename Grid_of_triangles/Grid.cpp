@@ -112,15 +112,16 @@ Grid::Grid(const Rectangular_Prallelepiped& boarder, size_t number_of_points, do
 }
 
 
-//void Grid::insert_point(ExtendPoint& point)
-//{
-//	auto [x, y, z] = get_cell_coordinates(point);
-//	size_t i = get_cell_number(x, y, z);
-//
-//	point.set_cell(i);
-//	data_[i].push_back(&point);
-//}
-//
+void Grid::insert_point(ExtendPoint& point)
+{
+	//auto [x, y, z] = get_cell_coordinates(point);
+	//size_t i = get_cell_number(x, y, z);
+
+	//point.set_cell(i);
+	////data_[i].push_back(&point);
+	//data_[i].add_extend_point(&point);
+}
+
 //std::vector<ExtendPoint*>& Grid::get_points_cell(size_t n_cell)
 //{
 //	return data_[n_cell];
