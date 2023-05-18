@@ -91,12 +91,12 @@ int main()
 
 	for (auto& pointH : points)
 	{
-		//grid.insert_point(pointH);
+		grid.insert_point(pointH);
 	}
 
 	//auto va = grid.get_points_cell(0);
 
-	//cout << grid << endl;
+	cout << grid << endl;
 
 	//for (auto& a : *va)
 	//{

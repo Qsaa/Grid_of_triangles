@@ -2,10 +2,12 @@
 #include "Point.h"
 
 
-Cell::Cell() : i_(-1), n_point(0), xyz_(), boarder_() {}
+Cell::Cell() : i_(-1), number_of_points(0), xyz_(), boarder_() {}
 
 void Cell::set_i(size_t i)
 {
+	// you can add a check to see if this cell is ok
+	// TODO
 	i_ = i;
 }
 
@@ -47,10 +49,11 @@ void Cell::set_boarder(double x_min, double x_max, double y_min, double y_max, d
 	boarder_.z_max_ = z_max;
 }
 
-void Cell::add_extend_point(ExtendPoint* p_point)
+void Cell::add_extend_point(ExtendPoint* point)
 {
-	++n_point;
-	data_.push_back(p_point);
+	point->set_cell(i_);
+	data_.push_back(point);
+	++number_of_points;
 }
 
 size_t Cell::get_i() const
