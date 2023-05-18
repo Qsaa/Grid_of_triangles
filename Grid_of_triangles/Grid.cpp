@@ -38,7 +38,7 @@ Grid::Grid(const Rectangular_Prallelepiped& boarder, size_t number_of_points, do
 
 	// define number of cells
 	//data_.reserve(n_x_ * n_y_ * n_z_); ???
-	data_.resize(n_cell_x_ * n_cell_y_ * n_cell_z_);
+	ñells_.resize(n_cell_x_ * n_cell_y_ * n_cell_z_);
 
 	int n = 0;
 	for (size_t i_x = 0; i_x < n_cell_x_; ++i_x)
@@ -47,10 +47,10 @@ Grid::Grid(const Rectangular_Prallelepiped& boarder, size_t number_of_points, do
 		{
 			for (size_t i_z = 0; i_z < n_cell_z_; ++i_z)
 			{
-				data_[n].set_i(n);
+				ñells_[n].set_i(n);
 				//data_[n].set_i_xyz(x, y, z);
-				data_[n].set_i_xyz(XYZ_number(i_x, i_y, i_z));
-				data_[n].set_boarder(
+				ñells_[n].set_i_xyz(XYZ_number(i_x, i_y, i_z));
+				ñells_[n].set_boarder(
 					(boarder_.x_min_ + (i_x	   ) * len_section_x_),		// x_min
 					(boarder_.x_min_ + (i_x + 1) * len_section_x_),		// x_max
 					(boarder_.y_min_ + (i_y	   ) * len_section_y_),		// y_max
@@ -68,7 +68,7 @@ Grid::Grid(const Rectangular_Prallelepiped& boarder, size_t number_of_points, do
 void Grid::insert_point(ExtendPoint& point)
 {
 	size_t i = get_the_cell_number(point);
-	data_[i].add_extend_point(&point);
+	ñells_[i].add_extend_point(&point);
 }
 
 size_t Grid::get_the_cell_number(const ExtendPoint& point) const
@@ -107,7 +107,7 @@ void Grid::print_short()
 	std::cout << "X: " << n_cell_x_ << "\n";
 	std::cout << "Y: " << n_cell_y_ << "\n";
 	std::cout << "Z: " << n_cell_z_ << "\n";
-	std::cout << "All: " << data_.size() << "\n";
+	std::cout << "All: " << ñells_.size() << "\n";
 
 	std::cout << "Lenght of each section:\n";
 	std::cout << "X: " << len_section_x_ << "\n";
@@ -119,12 +119,12 @@ void Grid::print()
 {
 	print_short();
 
-	if (!data_.empty())
+	if (!ñells_.empty())
 	{
-		size_t max = data_[0].get_points().size();
+		size_t max = ñells_[0].get_points().size();
 		size_t min = max;
 
-		for (auto& cell : data_)
+		for (auto& cell : ñells_)
 		{
 			if (max < cell.get_points().size())
 			{
@@ -148,15 +148,15 @@ void Grid::print_full()
 {
 	print_short();
 
-	if (!data_.empty())
+	if (!ñells_.empty())
 	{
-		size_t max = data_[0].get_points().size();
+		size_t max = ñells_[0].get_points().size();
 		size_t min = max;
 
 		//cell.print();
 		//std::cout << cell << "\n";
 
-		for (auto& cell : data_)
+		for (auto& cell : ñells_)
 		{
 			if (max < cell.get_points().size())
 			{
@@ -190,19 +190,19 @@ std::ostream& operator<<(std::ostream& out, const Grid& grid)
 	out << "X: " << grid.n_cell_x_ << "\n";
 	out << "Y: " << grid.n_cell_y_ << "\n";
 	out << "Z: " << grid.n_cell_z_ << "\n";
-	out << "All: " << grid.data_.size() << "\n";
+	out << "All: " << grid.ñells_.size() << "\n";
 
 	out << "Lenght of each section:\n";
 	out << "X: " << grid.len_section_x_ << "\n";
 	out << "Y: " << grid.len_section_y_ << "\n";
 	out << "Z: " << grid.len_section_z_ << "\n";
 
-	if (!grid.data_.empty())
+	if (!grid.ñells_.empty())
 	{
-		size_t max = grid.data_[0].get_points().size();
+		size_t max = grid.ñells_[0].get_points().size();
 		size_t min = max;
 
-		for (auto& cell : grid.data_)
+		for (auto& cell : grid.ñells_)
 		{
 			if (max < cell.get_points().size())
 			{

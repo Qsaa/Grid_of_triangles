@@ -51,7 +51,7 @@ private:
 	double len_section_y_;
 	double len_section_z_;
 
-	std::vector<Cell> data_;
+	std::vector<Cell> ñells_;
 
 };
 
