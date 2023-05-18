@@ -35,6 +35,9 @@ struct Cell
 
 	double distance_to_point(const Point& point) const;
 
+	//TODO NOW
+	ExtendPoint& get_the_closest_point_from_this_cell_to_point();
+
 private:
 	// this method helps "distance_to_point" method to calculate the distance
 	double distance_to_point_one_dimensions(double p, double min, double max) const;

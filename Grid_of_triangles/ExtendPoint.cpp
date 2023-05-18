@@ -9,7 +9,7 @@ size_t ExtendPoint::get_id() const
 	return id_;
 }
 
-int ExtendPoint::get_n_cell() const
+int ExtendPoint::get_the_cell_number() const
 {
 	return cell_number_;
 }
@@ -61,6 +61,7 @@ std::ostream& operator<<(std::ostream& out, const ExtendPoint& p)
 std::istream& operator>>(std::istream& in, ExtendPoint& p)
 {
 	char note = '*';
+	// TODO
 	char common;
 	in >> p.id_ >> common >> p.set_x() >> common >> p.set_y() >> common >> p.set_z();
 	return in;
