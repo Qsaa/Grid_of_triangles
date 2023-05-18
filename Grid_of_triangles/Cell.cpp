@@ -52,7 +52,7 @@ void Cell::set_boarder(double x_min, double x_max, double y_min, double y_max, d
 void Cell::add_extend_point(ExtendPoint* point)
 {
 	point->set_cell(i_);
-	data_.push_back(point);
+	extend_points_.push_back(point);
 	++number_of_points;
 }
 
@@ -103,12 +103,12 @@ double Cell::get_z_max() const
 
 const std::vector<ExtendPoint*>& Cell::get_points() const
 {
-	return data_;
+	return extend_points_;
 }
 
 std::vector<ExtendPoint*>& Cell::get_points()
 {
-	return data_;
+	return extend_points_;
 }
 
 

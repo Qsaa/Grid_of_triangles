@@ -23,8 +23,8 @@ int main()
 	//TODO
 	//¬ыполнить проверку если количество точек больше, чем max_int бросить исключение
 	
-	//ifstream input_file("test_data.txt");
-	ifstream input_file("barrel-nodes.xyz");
+	ifstream input_file("test_data.txt");
+	//ifstream input_file("barrel-nodes.xyz");
 	if (!input_file.is_open())
 	{
 		cout << "Error! File wasn't found" << endl;

@@ -52,5 +52,5 @@ private:
 
 	Rectangular_Prallelepiped boarder_;
 
-	std::vector<ExtendPoint*> data_;
+	std::vector<ExtendPoint*> extend_points_;
 };

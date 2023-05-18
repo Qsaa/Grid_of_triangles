@@ -1,8 +1,8 @@
 #include "ExtendPoint.h"
 
-ExtendPoint::ExtendPoint(): Point(), id_(0), n_cell_(0){}
+ExtendPoint::ExtendPoint(): Point(), id_(0), cell_number_(0){}
 
-ExtendPoint::ExtendPoint(double x, double y, double z) : Point(x, y, z), id_(0), n_cell_(-1) {}
+ExtendPoint::ExtendPoint(double x, double y, double z) : Point(x, y, z), id_(0), cell_number_(-1) {}
 
 size_t ExtendPoint::get_id() const
 {
@@ -11,12 +11,12 @@ size_t ExtendPoint::get_id() const
 
 int ExtendPoint::get_n_cell() const
 {
-	return n_cell_;
+	return cell_number_;
 }
 
 void ExtendPoint::set_cell(size_t pos)
 {
-	n_cell_ = pos;
+	cell_number_ = pos;
 }
 
 
@@ -54,7 +54,7 @@ void ExtendPoint::print() const
 
 std::ostream& operator<<(std::ostream& out, const ExtendPoint& p)
 {
-	return out << "Number: " << p.id_ << " Cell: " << p.n_cell_ << " Point: " <<
+	return out << "Number: " << p.id_ << " Cell: " << p.cell_number_ << " Point: " <<
 		p.get_x() << " " << p.get_y() << ' ' << p.get_z();
 }
 
@@ -63,13 +63,5 @@ std::istream& operator>>(std::istream& in, ExtendPoint& p)
 	char note = '*';
 	char common;
 	in >> p.id_ >> common >> p.set_x() >> common >> p.set_y() >> common >> p.set_z();
-	/*if (in >> p.id_ >> common >> p.set_x() >> common >> p.set_y() >> common >> p.set_z())
-	{
-		p.accetable_ = true;
-	}
-	else
-	{
-		p.accetable_ = false;
-	}*/
 	return in;
 }

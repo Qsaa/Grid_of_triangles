@@ -28,6 +28,6 @@ struct ExtendPoint : Point
 
 private:
 	size_t id_;
-	int n_cell_;
+	int cell_number_;
 };
 
