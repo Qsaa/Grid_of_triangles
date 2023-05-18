@@ -36,13 +36,17 @@ struct Cell
 	double distance_to_point(const Point& point) const;
 
 private:
+	// this method helps "distance_to_point" method to calculate the distance
 	double distance_to_point_one_dimensions(double p, double min, double max) const;
 private:
+	// This in number of cell. It is better to use "size_t", 
+	// but in this case don't show -1, this fact says that this cell is connected to grid
 	int i_;
+
 	//int i_x_;
 	//int i_y_;
 	//int i_z_;
-	size_t n_point;
+	size_t number_of_points;
 
 	XYZ_number xyz_;
 

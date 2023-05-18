@@ -10,8 +10,7 @@
 
 struct Grid
 {
-	friend std::ostream& operator<<(std::ostream&, const Grid&);
-
+public:
 	Grid(const Rectangular_Prallelepiped& boarder, size_t size, double density);
 
 	void insert_point(ExtendPoint& point);
@@ -22,9 +21,15 @@ struct Grid
 	//ExtendPoint* get_closest_point(const ExtendPoint& point);
 
 private:
-	//std::tuple<size_t, size_t, size_t> get_cell_coordinates(const ExtendPoint&) const;
-	//std::tuple<size_t, size_t, size_t> get_cell_coordinates(size_t i) const;
-	//size_t get_cell_number(size_t, size_t, size_t) const;
+	size_t get_the_cell_number(const ExtendPoint&) const;
+	size_t convert_from_xyz_to_i(size_t x, size_t y, size_t z) const;
+	std::tuple<size_t, size_t, size_t> convert_from_i_to_xyz(size_t) const;
+
+public:
+	void print_short();
+	void print();
+	void print_full();
+	friend std::ostream& operator<<(std::ostream&, const Grid&);
 
 private:
 	/*double x_max_;
@@ -42,9 +47,9 @@ private:
 	size_t n_cell_y_;
 	size_t n_cell_z_;
 
-	double section_x_;
-	double section_y_;
-	double section_z_;
+	double len_section_x_;
+	double len_section_y_;
+	double len_section_z_;
 
 	std::vector<Cell> data_;
 
