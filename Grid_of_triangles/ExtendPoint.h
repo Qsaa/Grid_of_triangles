@@ -17,7 +17,7 @@ struct ExtendPoint : Point
 	ExtendPoint(double, double, double);
 
 	size_t get_id() const;
-	int get_n_cell() const;
+	int get_the_cell_number() const;
 
 	void set_cell(size_t);
 	std::istream& set(std::istream&);

@@ -94,17 +94,8 @@ int main()
 		grid.insert_point(pointH);
 	}
 
-	//auto va = grid.get_points_cell(0);
 
-	cout << grid << endl;
-
-	//for (auto& a : *va)
-	//{
-	//	cout << *a << endl;
-	//}
-
-
-	//size_t n_cell = points[0].get_n_cell(); // получаем номер €чейки
+	size_t n_cell = points[0].get_the_cell_number(); // получаем номер €чейки
 	//Cell&  pointer_on_cell = grid.get_points_cell(n_cell); // получаем указатель на вектор точек в данной €чейки
 	//std::vector<Point*>* ppp = static_cast< std::vector<Point*>* > (pointer_on_cell);
 	//ExtendPoint* p1 =  points[0].get_closest_point_nn(pointer_on_cell); //
