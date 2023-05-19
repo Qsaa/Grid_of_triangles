@@ -103,7 +103,8 @@ double Cell::get_z_max() const
 
 const std::vector<ExtendPoint*>& Cell::get_points() const
 {
-	return extend_points_;
+	//return extend_points_;
+	return Cell::get_points();
 }
 
 std::vector<ExtendPoint*>& Cell::get_points()
@@ -118,6 +119,17 @@ double Cell::distance_to_point(const Point& point) const
 	double distance_by_y = distance_to_point_one_dimensions(point.get_y(), boarder_.y_min_, boarder_.y_max_);
 	double distance_by_z = distance_to_point_one_dimensions(point.get_z(), boarder_.z_min_, boarder_.z_max_);
 	return sqrt(distance_by_x * distance_by_x + distance_by_y * distance_by_y + distance_by_z * distance_by_z);
+}
+
+ExtendPoint& Cell::get_the_closest(ExtendPoint& point_0)
+{
+	for (auto point : extend_points_)
+	{
+		//point_0.distance(&point);
+		point->distance(point_0);
+	}
+	ExtendPoint p;
+	return p;
 }
 
 double Cell::distance_to_point_one_dimensions(double p, double min, double max) const

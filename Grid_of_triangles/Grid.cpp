@@ -71,6 +71,11 @@ void Grid::insert_point(ExtendPoint& point)
 	ñells_[i].add_extend_point(&point);
 }
 
+Cell& Grid::get_cell(size_t i)
+{
+	return ñells_[i];
+}
+
 size_t Grid::get_the_cell_number(const ExtendPoint& point) const
 {
 	return convert_from_xyz_to_i(
