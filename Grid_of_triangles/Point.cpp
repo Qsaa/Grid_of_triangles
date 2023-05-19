@@ -81,10 +81,16 @@ void Point::print() const
 	std::cout << (*this);
 }
 
-double Point::distance(const Point& p) const
+//double Point::distance(const Point& p) const
+//{
+//	return sqrt(pow((x_ - p.x_), 2) + pow((y_ - p.y_), 2) + pow((z_ - p.z_), 2));
+//}
+
+double Point::distance(Point& p)
 {
 	return sqrt(pow((x_ - p.x_), 2) + pow((y_ - p.y_), 2) + pow((z_ - p.z_), 2));
 }
+
 
 //Point* Point::get_closest_point_nn(const std::vector<Point*>& vector_points) const
 //{

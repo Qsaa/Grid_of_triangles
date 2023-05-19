@@ -96,6 +96,7 @@ int main()
 
 
 	size_t n_cell = points[0].get_the_cell_number(); // получаем номер €чейки
+	grid.get_cell(n_cell).get_the_closest(points[0]);
 	//get_the_closest_point_from_this_cell
 
 	//Cell&  pointer_on_cell = grid.get_points_cell(n_cell); // получаем указатель на вектор точек в данной €чейки

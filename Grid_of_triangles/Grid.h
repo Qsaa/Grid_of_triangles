@@ -14,11 +14,7 @@ public:
 	Grid(const Rectangular_Prallelepiped& boarder, size_t size, double density);
 
 	void insert_point(ExtendPoint& point);
-	//std::vector<ExtendPoint*>& get_points_cell(size_t n_cell);
-	
-	//переделай потом с move семантикой
-	//std::vector<ExtendPoint*>* foo();
-	//ExtendPoint* get_closest_point(const ExtendPoint& point);
+	Cell& get_cell(size_t i);
 
 private:
 	size_t get_the_cell_number(const ExtendPoint&) const;

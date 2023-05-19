@@ -35,8 +35,9 @@ struct Cell
 
 	double distance_to_point(const Point& point) const;
 
-	//TODO NOW
-	ExtendPoint& get_the_closest_point_from_this_cell_to_point();
+	// Returns a refer to the ñlosest point from this cell to the point that the function receives
+	//ExtendPoint& get_the_closest(const ExtendPoint& );
+	ExtendPoint& get_the_closest(ExtendPoint& );
 
 private:
 	// this method helps "distance_to_point" method to calculate the distance

@@ -28,7 +28,8 @@ struct Point
 
     virtual void print() const;
 
-    double distance(const Point& p) const;
+    //ouble distance(const Point& p) const;
+    double distance(Point& p);
     //Point* get_closest_point_nn(std::vector<Point*>::iterator vector_points);
     //template<typename T>
     //Point* get_closest_point_nn(const T& vector_points);
