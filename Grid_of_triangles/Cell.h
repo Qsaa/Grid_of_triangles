@@ -12,7 +12,7 @@ struct Cell
 	// Написать конструкторы!!!! TODO
 	Cell();
 
-	void set_i(size_t);
+	void set_i(int i);
 	void set_i_xyz(const X_Y_Z&);
 	void set_i_xyz(size_t, size_t, size_t);
 	void set_boarder(const Rectangular_Prallelepiped&);
@@ -31,14 +31,15 @@ struct Cell
 	double get_z_min() const;
 	double get_z_max() const;
 
-	const std::vector<ExtendPoint*>& get_extend_points() const;
-	std::vector<ExtendPoint*>& get_extend_points();
+	const std::vector<ExtendPoint*>& get_points() const;
+	std::vector<ExtendPoint*>& get_points();
 
 	double distance_to_point(const Point& point) const;
 
 	// Returns a refer to the сlosest point from this cell to the point that the function receives
 	// ExtendPoint& get_the_closest(const ExtendPoint& );
 	ExtendPoint& closest_point_in_cell_nn(ExtendPoint&);
+	ExtendPoint& closest_point_in_cell_nn(Point&);
 
 private:
 	// this method helps "distance_to_point" method to calculate the distance
