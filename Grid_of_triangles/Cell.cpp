@@ -103,8 +103,8 @@ double Cell::get_z_max() const
 
 const std::vector<ExtendPoint*>& Cell::get_points() const
 {
-	//return extend_points_;
-	return Cell::get_points();
+	return extend_points_;
+	//return Cell::get_points();
 }
 
 std::vector<ExtendPoint*>& Cell::get_points()
@@ -130,6 +130,8 @@ ExtendPoint& Cell::closest_point_in_cell_nn(ExtendPoint& point_0)
 ExtendPoint& Cell::closest_point_in_cell_nn(Point&)
 {
 	// TODO: вставьте здесь оператор return
+	ExtendPoint p;//!!!!!!!!!!!
+	return p;//!!!!!!!
 }
 
 double Cell::distance_to_point_one_dimensions(double p, double min, double max) const

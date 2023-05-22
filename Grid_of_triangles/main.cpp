@@ -105,7 +105,7 @@ int main()
 	
 	cout << middle_p << endl;
 
-	grid.get_cell(i_cell).closest_point_in_cell_nn(middle_p);
+	//grid.get_cell(i_cell).closest_point_in_cell_nn(middle_p);
 
 	//cout << i_cell << " " << i_point << " " << grid.get_number_cell() << endl;
 	
