@@ -4,7 +4,7 @@
 
 Cell::Cell() : i_(-1), number_of_points(0), xyz_(), boarder_() {}
 
-void Cell::set_i(size_t i)
+void Cell::set_i(int i)
 {
 	// you can add a check to see if this cell is ok
 	// TODO
@@ -101,13 +101,13 @@ double Cell::get_z_max() const
 	return boarder_.z_max_;
 }
 
-const std::vector<ExtendPoint*>& Cell::get_extend_points() const
+const std::vector<ExtendPoint*>& Cell::get_points() const
 {
 	//return extend_points_;
-	return Cell::get_extend_points();
+	return Cell::get_points();
 }
 
-std::vector<ExtendPoint*>& Cell::get_extend_points()
+std::vector<ExtendPoint*>& Cell::get_points()
 {
 	return extend_points_;
 }
@@ -123,8 +123,13 @@ double Cell::distance_to_point(const Point& point) const
 
 ExtendPoint& Cell::closest_point_in_cell_nn(ExtendPoint& point_0)
 {
-	ExtendPoint& p = *(point_0.get_closest_point_nn(this->get_extend_points()));
+	ExtendPoint& p = *(point_0.get_closest_point_nn(this->get_points()));
 	return p;
+}
+
+ExtendPoint& Cell::closest_point_in_cell_nn(Point&)
+{
+	// TODO: вставьте здесь оператор return
 }
 
 double Cell::distance_to_point_one_dimensions(double p, double min, double max) const
