@@ -2,6 +2,7 @@
 
 #include "ExtendPoint.h"
 #include "Rectangular_Prallelepiped.h"
+#include "X_Y_Z.h"
 
 #include<vector>
 #include<cmath>
@@ -12,7 +13,7 @@ struct Cell
 	Cell();
 
 	void set_i(size_t);
-	void set_i_xyz(const XYZ_number&);
+	void set_i_xyz(const X_Y_Z&);
 	void set_i_xyz(size_t, size_t, size_t);
 	void set_boarder(const Rectangular_Prallelepiped&);
 	void set_boarder(double, double, double, double, double, double);
@@ -21,7 +22,7 @@ struct Cell
 
 	size_t get_i() const;
 	std::tuple<size_t, size_t, size_t> get_xyz() const; // CHECK можно убрать один из методов
-	XYZ_number& get_xyz(); // CHECK можно убрать один из методов
+	X_Y_Z& get_xyz(); // CHECK можно убрать один из методов
 	
 	double get_x_min() const;
 	double get_x_max() const;
@@ -30,14 +31,14 @@ struct Cell
 	double get_z_min() const;
 	double get_z_max() const;
 
-	const std::vector<ExtendPoint*>& get_points() const;
-	std::vector<ExtendPoint*>& get_points();
+	const std::vector<ExtendPoint*>& get_extend_points() const;
+	std::vector<ExtendPoint*>& get_extend_points();
 
 	double distance_to_point(const Point& point) const;
 
 	// Returns a refer to the сlosest point from this cell to the point that the function receives
-	//ExtendPoint& get_the_closest(const ExtendPoint& );
-	ExtendPoint& get_the_closest(ExtendPoint& );
+	// ExtendPoint& get_the_closest(const ExtendPoint& );
+	ExtendPoint& closest_point_in_cell_nn(ExtendPoint&);
 
 private:
 	// this method helps "distance_to_point" method to calculate the distance
@@ -46,14 +47,9 @@ private:
 	// This in number of cell. It is better to use "size_t", 
 	// but in this case don't show -1, this fact says that this cell is connected to grid
 	int i_;
-
-	//int i_x_;
-	//int i_y_;
-	//int i_z_;
+	X_Y_Z xyz_;
+	
 	size_t number_of_points;
-
-	XYZ_number xyz_;
-
 	Rectangular_Prallelepiped boarder_;
 
 	std::vector<ExtendPoint*> extend_points_;

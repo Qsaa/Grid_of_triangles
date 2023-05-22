@@ -14,12 +14,3 @@ struct Rectangular_Prallelepiped
 	double z_min_;
 	double z_max_;
 };
-
-struct XYZ_number
-{
-	XYZ_number();
-	XYZ_number(int, int, int);
-	int i_x_;
-	int i_y_;
-	int i_z_;
-};

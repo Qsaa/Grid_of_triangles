@@ -3,6 +3,7 @@
 #include "ExtendPoint.h"
 #include "Cell.h"
 #include "Rectangular_Prallelepiped.h"
+#include "X_Y_Z.h"
 
 #include <vector>
 #include <iostream>
@@ -14,6 +15,8 @@ public:
 	Grid(const Rectangular_Prallelepiped& boarder, size_t size, double density);
 
 	void insert_point(ExtendPoint& point);
+	void fill(std::vector<ExtendPoint>& points);
+	size_t get_number_cell() const;
 	Cell& get_cell(size_t i);
 
 private:
@@ -47,7 +50,7 @@ private:
 	double len_section_y_;
 	double len_section_z_;
 
-	std::vector<Cell> ñells_;
+	std::vector<Cell> cells_;
 
 };
 

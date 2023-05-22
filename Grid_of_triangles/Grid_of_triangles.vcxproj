@@ -131,11 +131,13 @@
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="draft.cpp" />
     <ClCompile Include="ExtendPoint.cpp" />
+    <ClCompile Include="Function.cpp" />
     <ClCompile Include="Grid_of_triangles.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Rectangular_Prallelepiped.cpp" />
+    <ClCompile Include="X_Y_Z.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="barrel-nodes.xyz" />
@@ -144,9 +146,11 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="ExtendPoint.h" />
+    <ClInclude Include="Function.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Rectangular_Prallelepiped.h" />
+    <ClInclude Include="X_Y_Z.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

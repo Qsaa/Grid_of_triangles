@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 struct Point
 {
@@ -26,40 +27,19 @@ struct Point
     void set_y(double);
     void set_z(double);
 
+    double distance(const Point* p) const;
+    Point get_point_in_the_middle(const Point* p) const;
+    
     virtual void print() const;
 
-    //ouble distance(const Point& p) const;
-    double distance(Point& p);
-    //Point* get_closest_point_nn(std::vector<Point*>::iterator vector_points);
-    //template<typename T>
-    //Point* get_closest_point_nn(const T& vector_points);
+private:
+    double get_middle(double, double) const;
 
-    //Point* get_closest_point_nn( Point* vector_points);// const;
-    //Point* get_closest_point_nn(std::vector<std::vector<Point*>>& vector_points);// const;
+    // An extra jump is not good
+    // virtual Point* get_the_closest_point_nn(const std::vector<Point*>* points) const;
 
 private:
     double x_;
     double y_;
     double z_;
 };
-
-//template<typename T>
-//inline Point* Point::get_closest_point_nn(const T& vector_points)
-//{
-//    if (vector_points.empty())
-//    {
-//        return nullptr;
-//    }
-//
-//    Point* closest_Point = vector_points[0];
-//    double min_distance = distance(*(vector_points[0]));
-//    for (size_t i = 1; i < vector_points.size(); ++i)
-//    {
-//        double new_distance = distance(*(vector_points[0]));
-//        if (min_distance > new_distance)
-//        {
-//            min_distance = new_distance;
-//        }
-//    }
-//    return closest_Point;
-//}
