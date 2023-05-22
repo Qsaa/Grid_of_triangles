@@ -129,10 +129,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
-    <ClCompile Include="draft.cpp" />
     <ClCompile Include="ExtendPoint.cpp" />
     <ClCompile Include="Function.cpp" />
-    <ClCompile Include="Grid_of_triangles.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Point.cpp" />
