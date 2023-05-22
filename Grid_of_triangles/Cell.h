@@ -14,7 +14,7 @@ struct Cell
 
 	void set_i(int i);
 	void set_i_xyz(const X_Y_Z&);
-	void set_i_xyz(size_t, size_t, size_t);
+	void set_i_xyz(int, int, int);
 	void set_boarder(const Rectangular_Prallelepiped&);
 	void set_boarder(double, double, double, double, double, double);
 

@@ -18,7 +18,7 @@ void Cell::set_i_xyz(const X_Y_Z& xyz)
 	xyz_.i_z_ = xyz.i_z_;
 }
 
-void Cell::set_i_xyz(size_t i_x, size_t i_y, size_t i_z)
+void Cell::set_i_xyz(int i_x, int i_y, int i_z)
 {
 	xyz_.i_x_ = i_x;
 	xyz_.i_y_ = i_y;
