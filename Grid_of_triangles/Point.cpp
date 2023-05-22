@@ -76,48 +76,57 @@ void Point::set_z(double z)
 	z_ = z;
 }
 
+
+double Point::distance(const Point* p) const
+{
+	return sqrt(pow((x_ - p->x_), 2) + pow((y_ - p->y_), 2) + pow((z_ - p->z_), 2));
+}
+
+Point Point::get_point_in_the_middle(const Point* p) const
+{
+	return Point(
+		get_middle(p->get_x(), x_),
+		get_middle(p->get_y(), y_),
+		get_middle(p->get_z(), z_)
+	);
+}
+
+// An extra jump is not good
+/*Point* Point::get_the_closest_point_nn(const std::vector<Point*>* points) const
+{
+	if (points ==  nullptr)
+	{
+		return nullptr;
+	}
+	
+	double dist = distance((*points)[0]);
+	Point* result = (*points)[0];
+	
+	for (auto point : *points)
+	{
+		double new_dist = distance(point);
+		if (new_dist < dist)
+		{
+			result = point;
+		}
+	}
+	return result;
+}*/
+
 void Point::print() const
 {
 	std::cout << (*this);
 }
 
-//double Point::distance(const Point& p) const
-//{
-//	return sqrt(pow((x_ - p.x_), 2) + pow((y_ - p.y_), 2) + pow((z_ - p.z_), 2));
-//}
-
-double Point::distance(Point& p)
+double Point::get_middle(double a, double b) const
 {
-	return sqrt(pow((x_ - p.x_), 2) + pow((y_ - p.y_), 2) + pow((z_ - p.z_), 2));
+	if (a < b)
+	{
+		return a + (b - a) / 2.0;
+	}
+	// a >= b
+	else
+	{
+		return b + (a - b) / 2.0;
+	}
 }
-
-
-//Point* Point::get_closest_point_nn(const std::vector<Point*>& vector_points) const
-//{
-//	if (vector_points.empty())
-//	{
-//		return nullptr;
-//	}
-//
-//	Point* closest_Point = vector_points[0];
-//	double min_distance = distance(*(vector_points[0]));
-//	for (size_t i = 1; i < vector_points.size(); ++i)
-//	{
-//		double new_distance = distance(*(vector_points[0]));
-//		if (min_distance > new_distance)
-//		{
-//			min_distance = new_distance;
-//		}
-//	}
-//	return closest_Point;
-//}
-
-//Point* get_closest_point_nn(std::vector< std::vector<Point*> >& vector_points) //const
-//{
-//	if (vector_points.empty())
-//	{
-//		return nullptr;
-//	}
-//	get_closest_point_nn(vector_points[0]);
-//	return nullptr;
-//}

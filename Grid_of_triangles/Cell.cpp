@@ -11,7 +11,7 @@ void Cell::set_i(size_t i)
 	i_ = i;
 }
 
-void Cell::set_i_xyz(const XYZ_number& xyz)
+void Cell::set_i_xyz(const X_Y_Z& xyz)
 {
 	xyz_.i_x_ = xyz.i_x_;
 	xyz_.i_y_ = xyz.i_y_;
@@ -61,7 +61,7 @@ size_t Cell::get_i() const
 	return i_;
 }
 
-XYZ_number& Cell::get_xyz()
+X_Y_Z& Cell::get_xyz()
 {
 	return xyz_;
 }
@@ -101,13 +101,13 @@ double Cell::get_z_max() const
 	return boarder_.z_max_;
 }
 
-const std::vector<ExtendPoint*>& Cell::get_points() const
+const std::vector<ExtendPoint*>& Cell::get_extend_points() const
 {
 	//return extend_points_;
-	return Cell::get_points();
+	return Cell::get_extend_points();
 }
 
-std::vector<ExtendPoint*>& Cell::get_points()
+std::vector<ExtendPoint*>& Cell::get_extend_points()
 {
 	return extend_points_;
 }
@@ -121,14 +121,9 @@ double Cell::distance_to_point(const Point& point) const
 	return sqrt(distance_by_x * distance_by_x + distance_by_y * distance_by_y + distance_by_z * distance_by_z);
 }
 
-ExtendPoint& Cell::get_the_closest(ExtendPoint& point_0)
+ExtendPoint& Cell::closest_point_in_cell_nn(ExtendPoint& point_0)
 {
-	for (auto point : extend_points_)
-	{
-		//point_0.distance(&point);
-		point->distance(point_0);
-	}
-	ExtendPoint p;
+	ExtendPoint& p = *(point_0.get_closest_point_nn(this->get_extend_points()));
 	return p;
 }
 

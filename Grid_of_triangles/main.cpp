@@ -5,12 +5,10 @@
 #include "ExtendPoint.h"
 #include "Point.h"
 #include "Rectangular_Prallelepiped.h"
+//#include "Function.h"
 
 #include <iostream>
 #include <fstream>
-//#include <algorithm>
-//#include <vector>
-//#include <math.h>
 
 
 // јмортизацинна€ плотность точек в подэлементе 
@@ -18,39 +16,29 @@ constexpr auto DENSITY = 10;
 
 using namespace std;
 
-int main()
+int read_data(vector<ExtendPoint>& points, Rectangular_Prallelepiped& boarder)
 {
 	//TODO
 	//¬ыполнить проверку если количество точек больше, чем max_int бросить исключение
-	
-	ifstream input_file("test_data.txt");
-	//ifstream input_file("barrel-nodes.xyz");
+
+	//ifstream input_file("test_data.txt");
+	ifstream input_file("barrel-nodes.xyz");
 	if (!input_file.is_open())
 	{
 		cout << "Error! File wasn't found" << endl;
 		return 0;
 	}
 
-	double x_max;
-	double x_min;
-	double y_max;
-	double y_min;
-	double z_max;
-	double z_min;
-
-	vector<ExtendPoint> points;
-	
 	ExtendPoint point;
 	input_file >> point;
 	points.push_back(point);
-	
-	Rectangular_Prallelepiped boarder;
+
 	boarder.x_max_ = boarder.x_min_ = point.get_x();
 	boarder.y_max_ = boarder.y_min_ = point.get_y();
 	boarder.z_max_ = boarder.z_min_ = point.get_z();
-	
 
-	while(input_file >> point)
+
+	while (input_file >> point)
 	{
 		if (boarder.x_max_ < point.get_x())
 		{
@@ -82,35 +70,46 @@ int main()
 		points.push_back(point);
 	}
 
+	/*
 	cout << "x_max: " << boarder.x_max_ << "   x_min: " << boarder.x_min_ << " __ " << boarder.x_max_ - boarder.x_min_ << endl;
 	cout << "y_max: " << boarder.y_max_ << "   y_min: " << boarder.y_min_ << " __ " << boarder.y_max_ - boarder.y_min_ << endl;
 	cout << "z_max: " << boarder.z_max_ << "   z_min: " << boarder.z_min_ << " __ " << boarder.z_max_ - boarder.z_min_ << endl;
+	//*/
+	return 0;
+}
 
+
+int main()
+{
+
+	vector<ExtendPoint> points;
+	Rectangular_Prallelepiped boarder;
+	read_data(points, boarder);
 
 	Grid grid(boarder, points.size(), DENSITY);
-
-	for (auto& pointH : points)
-	{
-		grid.insert_point(pointH);
-	}
+	grid.fill(points);
 
 
-	size_t n_cell = points[0].get_the_cell_number(); // получаем номер €чейки
-	grid.get_cell(n_cell).get_the_closest(points[0]);
-	//get_the_closest_point_from_this_cell
 
-	//Cell&  pointer_on_cell = grid.get_points_cell(n_cell); // получаем указатель на вектор точек в данной €чейки
-	//std::vector<Point*>* ppp = static_cast< std::vector<Point*>* > (pointer_on_cell);
-	//ExtendPoint* p1 =  points[0].get_closest_point_nn(pointer_on_cell); //
-	//cout << points[0] << endl;
-	//cout << *p1 << endl;
+	size_t i_cell = points[0].get_the_cell_number(); 
+	Point *p = &(grid.get_cell(i_cell).closest_point_in_cell_nn(points[0]));
+
+	cout << points[0] << endl;
+	cout << points[1] << endl << endl;
+	
+	cout << static_cast<Point>(points[0]) << endl;
+	cout << *p << endl << endl;
+
+	
+	Point middle_p = points[0].get_point_in_the_middle(p);
+	
+	cout << middle_p << endl;
+
+	grid.get_cell(i_cell).closest_point_in_cell_nn(middle_p);
+
+	//cout << i_cell << " " << i_point << " " << grid.get_number_cell() << endl;
 	
 	cout << "The end" << endl;
 	return 0;
 }
 
-
-//Point make_middle_point(const Point& p1, const Point& p2)
-//{
-//	return Point((p1.get_x() + p2.get_x()) / 2.0, (p1.get_y() + p2.get_y()) / 2.0, (p1.get_z() + p2.get_z()) / 2.0);
-//}

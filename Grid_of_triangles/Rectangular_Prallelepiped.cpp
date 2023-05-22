@@ -24,7 +24,3 @@ Rectangular_Prallelepiped::Rectangular_Prallelepiped(
 	z_min_ = z_min;
 	z_max_ = z_max;
 }
-
-XYZ_number::XYZ_number() :i_x_(-1), i_y_(-1), i_z_(-1) {}
-
-XYZ_number::XYZ_number(int x, int y, int z) : i_x_(x), i_y_(y), i_z_(z) {}

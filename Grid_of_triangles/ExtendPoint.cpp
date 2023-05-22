@@ -27,13 +27,14 @@ std::istream& ExtendPoint::set(std::istream& in)
 	return in;
 }
 
-ExtendPoint* ExtendPoint::get_closest_point_nn(std::vector<ExtendPoint*>& points) //const
+
+ExtendPoint* ExtendPoint::get_closest_point_nn(std::vector<ExtendPoint*>& points)
 {
 	ExtendPoint* closest_Point = nullptr;
 	double min_distance = -1;
 	for (ExtendPoint* point : points)
 	{
-		double new_distance = distance(*point);
+		double new_distance = distance(point);
 		if (id_ != point->get_id())
 		{
 			if (new_distance < min_distance || min_distance < 0)
