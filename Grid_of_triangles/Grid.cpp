@@ -64,10 +64,75 @@ Grid::Grid(const Rectangular_Prallelepiped& boarder, size_t number_of_points, do
 	}
 }
 
+int Grid::cell_up_by_x(int i)
+{
+	auto[x, y, z] = convert_from_i_to_xyz(i);
+	if (x + 1 > n_cell_x_)
+	{
+		return -1;
+	}
+	return convert_from_xyz_to_i(x+1, y, z);
+}
+
+
+int Grid::cell_down_by_x(int i)
+{
+	auto [x, y, z] = convert_from_i_to_xyz(i);
+	if (x - 1 < 0)
+	{
+		return -1;
+	}
+	return convert_from_xyz_to_i(x - 1, y, z);
+}
+
+
+int Grid::cell_up_by_y(int i)
+{
+	auto [x, y, z] = convert_from_i_to_xyz(i);
+	if (y + 1 > n_cell_y_)
+	{
+		return -1;
+	}
+	return convert_from_xyz_to_i(x, y + 1, z);
+}
+
+
+int Grid::cell_down_by_y(int i)
+{
+	auto [x, y, z] = convert_from_i_to_xyz(i);
+	if (y - 1 < 0)
+	{
+		return -1;
+	}
+	return convert_from_xyz_to_i(x, y - 1, z);
+}
+
+int Grid::cell_up_by_z(int i)
+{
+	auto [x, y, z] = convert_from_i_to_xyz(i);
+	if (z + 1 > n_cell_z_)
+	{
+		return -1;
+	}
+	return convert_from_xyz_to_i(x, y, z + 1);
+}
+
+
+int Grid::cell_down_by_z(int i)
+{
+	auto [x, y, z] = convert_from_i_to_xyz(i);
+	if (z - 1 < 0)
+	{
+		return -1;
+	}
+	return convert_from_xyz_to_i(x, y, z - 1);
+}
 
 void Grid::insert_point(ExtendPoint& point)
 {
 	size_t i = get_the_cell_number(point);
+	//TODO int i = get_the_cell_number(point);
+	// If = -1. ТО точка не входит в эту сетку
 	cells_[i].add_extend_point(&point);
 }
 
@@ -88,6 +153,40 @@ Cell& Grid::get_cell(size_t i)
 {
 	return cells_[i];
 }
+
+void Grid::cells_around(std::set<Cell*>& cellset, Cell& cell, double dist, ExtendPoint* p)
+{
+	if (cell.distance_to_point(p) < dist)
+	{
+		cellset.insert(&cell);
+		int i = cell.get_i();
+
+		int cell_i = cell_up_by_x(i);
+		if (cell_i >= 0)
+			cells_around(cellset, get_cell(cell_up_by_x(i)), dist, p);
+		
+		cells_around(cellset, get_cell(cell_down_by_x(i)), dist, p);
+
+		cells_around(cellset, get_cell(cell_up_by_y(i)), dist, p);
+		cells_around(cellset, get_cell(cell_down_by_y(i)), dist, p);
+		
+		cells_around(cellset, get_cell(cell_up_by_z(i)), dist, p);
+		cells_around(cellset, get_cell(cell_down_by_z(i)), dist, p);
+	}
+
+}
+
+void Grid::is_cell_near(std::set<Cell*>& set_cells, double dist, ExtendPoint* p)
+{
+	Cell& cell = get_cell(p->get_the_cell_number());
+	double new_dist = cell.distance_to_point(p);
+	if (new_dist < dist)
+	{
+		set_cells.insert(&cell);
+
+	}
+}
+
 
 size_t Grid::get_the_cell_number(const ExtendPoint& point) const
 {

@@ -91,8 +91,10 @@ int main()
 
 
 
-	size_t i_cell = points[0].get_the_cell_number(); 
-	Point *p = &(grid.get_cell(i_cell).closest_point_in_cell_nn(points[0]));
+	size_t i_cell = points[0].get_the_cell_number(); // получим номер €чейки, в которой точка
+	Point *p = &(grid.get_cell(i_cell).closest_point_in_cell_nn(points[0])); // получим близжайшую точку к нашей точке в этой €чейки
+
+	//grid.cells_around(distance, point);
 
 	cout << points[0] << endl;
 	cout << points[1] << endl << endl;
@@ -100,7 +102,6 @@ int main()
 	cout << static_cast<Point>(points[0]) << endl;
 	cout << *p << endl << endl;
 
-	
 	Point middle_p = points[0].get_point_in_the_middle(p);
 	
 	cout << middle_p << endl;

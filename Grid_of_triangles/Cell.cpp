@@ -113,11 +113,11 @@ std::vector<ExtendPoint*>& Cell::get_points()
 }
 
 
-double Cell::distance_to_point(const Point& point) const
+double Cell::distance_to_point(const Point* point) const
 {
-	double distance_by_x = distance_to_point_one_dimensions(point.get_x(), boarder_.x_min_, boarder_.x_max_);
-	double distance_by_y = distance_to_point_one_dimensions(point.get_y(), boarder_.y_min_, boarder_.y_max_);
-	double distance_by_z = distance_to_point_one_dimensions(point.get_z(), boarder_.z_min_, boarder_.z_max_);
+	double distance_by_x = distance_to_point_one_dimensions(point->get_x(), boarder_.x_min_, boarder_.x_max_);
+	double distance_by_y = distance_to_point_one_dimensions(point->get_y(), boarder_.y_min_, boarder_.y_max_);
+	double distance_by_z = distance_to_point_one_dimensions(point->get_z(), boarder_.z_min_, boarder_.z_max_);
 	return sqrt(distance_by_x * distance_by_x + distance_by_y * distance_by_y + distance_by_z * distance_by_z);
 }
 

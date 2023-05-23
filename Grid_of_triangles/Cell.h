@@ -34,7 +34,7 @@ struct Cell
 	const std::vector<ExtendPoint*>& get_points() const;
 	std::vector<ExtendPoint*>& get_points();
 
-	double distance_to_point(const Point& point) const;
+	double distance_to_point(const Point* point) const;
 
 	// Returns a refer to the ñlosest point from this cell to the point that the function receives
 	// ExtendPoint& get_the_closest(const ExtendPoint& );

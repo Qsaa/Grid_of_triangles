@@ -1,6 +1,7 @@
 #include "ExtendPoint.h"
 
-ExtendPoint::ExtendPoint(): Point(), id_(0), cell_number_(0){}
+//The point id stars with the number 1. 0 means that this point is not fully defined  
+ExtendPoint::ExtendPoint(): Point(), id_(0), cell_number_(-1){}
 
 ExtendPoint::ExtendPoint(double x, double y, double z) : Point(x, y, z), id_(0), cell_number_(-1) {}
 

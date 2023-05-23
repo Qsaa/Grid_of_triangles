@@ -6,6 +6,7 @@
 #include "X_Y_Z.h"
 
 #include <vector>
+#include <set>
 #include <iostream>
 
 
@@ -14,10 +15,22 @@ struct Grid
 public:
 	Grid(const Rectangular_Prallelepiped& boarder, size_t size, double density);
 
+	int cell_up_by_x(int);
+	int cell_down_by_x(int);
+	int cell_up_by_y(int);
+	int cell_down_by_y(int);
+	int cell_up_by_z(int);
+	int cell_down_by_z(int);
+
+
 	void insert_point(ExtendPoint& point);
 	void fill(std::vector<ExtendPoint>& points);
 	size_t get_number_cell() const;
 	Cell& get_cell(size_t i);
+	// Returns to std::set<Cell*>& cells 
+	// that have a distance between them and a point less than the "distance"
+	void cells_around(std::set<Cell*>& result, Cell&, double, ExtendPoint*);
+	void is_cell_near(std::set<Cell*>& cells,  double, ExtendPoint*);
 
 private:
 	size_t get_the_cell_number(const ExtendPoint&) const;
@@ -31,14 +44,6 @@ public:
 	friend std::ostream& operator<<(std::ostream&, const Grid&);
 
 private:
-	/*double x_max_;
-	double x_min_;
-
-	double y_max_;
-	double y_min_;
-	
-	double z_max_;
-	double z_min_;*/
 
 	Rectangular_Prallelepiped boarder_;
 
