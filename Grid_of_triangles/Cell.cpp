@@ -127,12 +127,12 @@ ExtendPoint& Cell::closest_point_in_cell_nn(ExtendPoint& point_0)
 	return p;
 }
 
-ExtendPoint& Cell::closest_point_in_cell_nn(Point&)
+/*ExtendPoint& Cell::closest_point_in_cell_nn(Point&)
 {
 	// TODO: вставьте здесь оператор return
 	ExtendPoint p;//!!!!!!!!!!!
 	return p;//!!!!!!!
-}
+}*/
 
 double Cell::distance_to_point_one_dimensions(double p, double min, double max) const
 {

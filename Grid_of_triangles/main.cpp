@@ -92,11 +92,14 @@ int main()
 
 
 	size_t i_cell = points[0].get_the_cell_number(); // получим номер €чейки, в которой точка
-	Point *p = &(grid.get_cell(i_cell).closest_point_in_cell_nn(points[0])); // получим близжайшую точку к нашей точке в этой €чейки
+	ExtendPoint *p = &(grid.get_cell(i_cell).closest_point_in_cell_nn(points[0])); // получим близжайшую точку к нашей точке в этой €чейки
 
-	//grid.cells_around(distance, point);
+	double distance = points[0].distance(p);
 
-	cout << points[0] << endl;
+	std::set<Cell*> cells;
+	grid.nearest_cells(cells, p, distance);
+
+	/*cout << points[0] << endl;
 	cout << points[1] << endl << endl;
 	
 	cout << static_cast<Point>(points[0]) << endl;
@@ -104,7 +107,7 @@ int main()
 
 	Point middle_p = points[0].get_point_in_the_middle(p);
 	
-	cout << middle_p << endl;
+	cout << middle_p << endl;*/
 
 	//grid.get_cell(i_cell).closest_point_in_cell_nn(middle_p);
 	//cout << i_cell << " " << i_point << " " << grid.get_number_cell() << endl;

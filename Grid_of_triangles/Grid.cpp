@@ -64,68 +64,112 @@ Grid::Grid(const Rectangular_Prallelepiped& boarder, size_t number_of_points, do
 	}
 }
 
-int Grid::cell_up_by_x(int i)
+int Grid::i_up(int i)
 {
 	auto[x, y, z] = convert_from_i_to_xyz(i);
-	if (x + 1 > n_cell_x_)
+	if (x + 1 < n_cell_x_)
 	{
-		return -1;
+		return convert_from_xyz_to_i(x + 1, y, z);
 	}
-	return convert_from_xyz_to_i(x+1, y, z);
+	return -1;
 }
 
-
-int Grid::cell_down_by_x(int i)
+int Grid::i_down(int i)
 {
 	auto [x, y, z] = convert_from_i_to_xyz(i);
-	if (x - 1 < 0)
+	if (x - 1 >= 0)
 	{
-		return -1;
+		return convert_from_xyz_to_i(x - 1, y, z);
 	}
-	return convert_from_xyz_to_i(x - 1, y, z);
+	return -1;
 }
 
-
-int Grid::cell_up_by_y(int i)
+int Grid::i_left(int i)
 {
 	auto [x, y, z] = convert_from_i_to_xyz(i);
-	if (y + 1 > n_cell_y_)
+	if (y + 1 < n_cell_y_)
 	{
-		return -1;
+		return convert_from_xyz_to_i(x, y + 1, z);
 	}
-	return convert_from_xyz_to_i(x, y + 1, z);
+	return -1;
 }
 
-
-int Grid::cell_down_by_y(int i)
+int Grid::i_right(int i)
 {
 	auto [x, y, z] = convert_from_i_to_xyz(i);
-	if (y - 1 < 0)
+	if (y - 1 >= 0)
 	{
-		return -1;
+		return convert_from_xyz_to_i(x, y - 1, z);
 	}
-	return convert_from_xyz_to_i(x, y - 1, z);
+	return 1;
 }
 
-int Grid::cell_up_by_z(int i)
+int Grid::i_ahead(int i)
 {
 	auto [x, y, z] = convert_from_i_to_xyz(i);
-	if (z + 1 > n_cell_z_)
+	if (z + 1 < n_cell_z_)
 	{
-		return -1;
+		return convert_from_xyz_to_i(x, y, z + 1);
 	}
-	return convert_from_xyz_to_i(x, y, z + 1);
+	return -1;
 }
 
-
-int Grid::cell_down_by_z(int i)
+int Grid::i_back(int i)
 {
 	auto [x, y, z] = convert_from_i_to_xyz(i);
-	if (z - 1 < 0)
+	if (z - 1 >= 0)
 	{
-		return -1;
+		return convert_from_xyz_to_i(x, y, z - 1);;
 	}
-	return convert_from_xyz_to_i(x, y, z - 1);
+	return -1;
+}
+
+Cell* Grid::up(Cell* p_cell)
+{
+	return get_neighbouring_cell(p_cell, &Grid::i_up);
+}
+
+Cell* Grid::down(Cell* p_cell)
+{
+	return get_neighbouring_cell(p_cell, &Grid::i_down);
+}
+
+Cell* Grid::left(Cell* p_cell)
+{
+	return get_neighbouring_cell(p_cell, &Grid::i_left);
+}
+
+Cell* Grid::right(Cell* p_cell)
+{
+	return get_neighbouring_cell(p_cell, &Grid::i_right);
+}
+
+Cell* Grid::ahead(Cell* p_cell)
+{
+	return get_neighbouring_cell(p_cell, &Grid::i_ahead);
+}
+
+Cell* Grid::back(Cell* p_cell)
+{
+	return get_neighbouring_cell(p_cell, &Grid::i_back);
+}
+
+Cell* Grid::get_neighbouring_cell(Cell* p_cell, int(Grid::*i_directon)(int))
+{
+	p_cell->get_xyz();
+	size_t size_t_ii = p_cell->get_i(); /////////// Error
+	int int_ii = p_cell->get_i(); /////////// Error
+	int i = (this->*i_directon)(int_ii);
+	if (i == -1)
+	{
+		return nullptr;
+	}
+	return &get_cell(i);
+}
+
+size_t Grid::size() const
+{
+	return cells_.size();
 }
 
 void Grid::insert_point(ExtendPoint& point)
@@ -144,36 +188,33 @@ void Grid::fill(std::vector<ExtendPoint>& points)
 	}
 }
 
-size_t Grid::get_number_cell() const
-{
-	return cells_.size();
-}
-
 Cell& Grid::get_cell(size_t i)
 {
 	return cells_[i];
 }
 
-void Grid::cells_around(std::set<Cell*>& cellset, Cell& cell, double dist, ExtendPoint* p)
+void Grid::nearest_cells(std::set<Cell*>& result, ExtendPoint* p, double dist)
 {
-	if (cell.distance_to_point(p) < dist)
+	int i = p->get_the_cell_number();
+	Cell& cell = get_cell(i);
+	nearest_cells(result, cell, p, dist);
+	//nearest_cells(result, get_cell(p->get_the_cell_number()), p, dist);
+}
+
+void Grid::nearest_cells(std::set<Cell*>& cellset, Cell& cell, ExtendPoint* point, double dist)
+{
+	Cell* (Grid:: * directions_f[6])(Cell*) = {&Grid::up, &Grid::down, &Grid::left, &Grid::right, &Grid::ahead};
+	//for (auto direction : directions_f)
+	int a = cellset.count(&cell);
+	double b = up(&cell)->distance_to_point(point);
 	{
-		cellset.insert(&cell);
-		int i = cell.get_i();
-
-		int cell_i = cell_up_by_x(i);
-		if (cell_i >= 0)
-			cells_around(cellset, get_cell(cell_up_by_x(i)), dist, p);
-		
-		cells_around(cellset, get_cell(cell_down_by_x(i)), dist, p);
-
-		cells_around(cellset, get_cell(cell_up_by_y(i)), dist, p);
-		cells_around(cellset, get_cell(cell_down_by_y(i)), dist, p);
-		
-		cells_around(cellset, get_cell(cell_up_by_z(i)), dist, p);
-		cells_around(cellset, get_cell(cell_down_by_z(i)), dist, p);
+		if ( (cellset.count(&cell) == 0u) &&
+			 (up(&cell)->distance_to_point(point) < dist))
+		{
+			cellset.insert(up(&cell));
+			nearest_cells(cellset, *up(&cell), point, dist);
+		}
 	}
-
 }
 
 void Grid::is_cell_near(std::set<Cell*>& set_cells, double dist, ExtendPoint* p)

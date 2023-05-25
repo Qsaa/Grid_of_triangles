@@ -39,7 +39,7 @@ struct Cell
 	// Returns a refer to the ñlosest point from this cell to the point that the function receives
 	// ExtendPoint& get_the_closest(const ExtendPoint& );
 	ExtendPoint& closest_point_in_cell_nn(ExtendPoint&);
-	ExtendPoint& closest_point_in_cell_nn(Point&);
+	//ExtendPoint& closest_point_in_cell_nn(Point&);
 
 private:
 	// this method helps "distance_to_point" method to calculate the distance

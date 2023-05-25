@@ -15,21 +15,46 @@ struct Grid
 public:
 	Grid(const Rectangular_Prallelepiped& boarder, size_t size, double density);
 
-	int cell_up_by_x(int);
-	int cell_down_by_x(int);
-	int cell_up_by_y(int);
-	int cell_down_by_y(int);
-	int cell_up_by_z(int);
-	int cell_down_by_z(int);
+	// up - i_up_by_x 
+	int i_up(int);
+	// down - i_down_by_x
+	int i_down(int);
+	// left - i_up_by_y
+	int i_left(int);
+	// right - i_down_by_y
+	int i_right(int);
+	// ahead - i_up_by_z
+	int i_ahead(int);
+	// back - i_down_by_z
+	int i_back(int);
 
+	// up - i_up_by_x 
+	Cell* up(Cell*);
+	// down - i_down_by_x
+	Cell* down(Cell*);
+	// left - i_up_by_y
+	Cell* left(Cell*);
+	// right - i_down_by_y
+	Cell* right(Cell*);
+	// ahead - i_up_by_z
+	Cell* ahead(Cell*);
+	// back - i_down_by_z
+	Cell* back(Cell*);
+
+	Cell* get_neighbouring_cell(Cell* cell, int(Grid::*)(int));
+
+	size_t size() const;
 
 	void insert_point(ExtendPoint& point);
 	void fill(std::vector<ExtendPoint>& points);
-	size_t get_number_cell() const;
 	Cell& get_cell(size_t i);
+
+
 	// Returns to std::set<Cell*>& cells 
 	// that have a distance between them and a point less than the "distance"
-	void cells_around(std::set<Cell*>& result, Cell&, double, ExtendPoint*);
+	void nearest_cells(std::set<Cell*>& result, ExtendPoint*, double);
+	void nearest_cells(std::set<Cell*>& result, Cell& cell, ExtendPoint* p, double dist);
+
 	void is_cell_near(std::set<Cell*>& cells,  double, ExtendPoint*);
 
 private:
