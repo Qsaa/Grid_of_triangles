@@ -12,7 +12,7 @@
 
 
 // јмортизацинна€ плотность точек в подэлементе 
-constexpr auto DENSITY = 10;
+constexpr auto DENSITY = 1;
 
 using namespace std;
 
@@ -21,8 +21,8 @@ int read_data(vector<ExtendPoint>& points, Rectangular_Prallelepiped& boarder)
 	//TODO
 	//¬ыполнить проверку если количество точек больше, чем max_int бросить исключение
 
-	//ifstream input_file("test_data.txt");
-	ifstream input_file("barrel-nodes.xyz");
+	ifstream input_file("test_data.txt");
+	//ifstream input_file("barrel-nodes.xyz");
 	if (!input_file.is_open())
 	{
 		cout << "Error! File wasn't found" << endl;
@@ -81,23 +81,37 @@ int read_data(vector<ExtendPoint>& points, Rectangular_Prallelepiped& boarder)
 
 int main()
 {
-
 	vector<ExtendPoint> points;
 	Rectangular_Prallelepiped boarder;
+
 	read_data(points, boarder);
+
+	//--
+	double d1 = sqrt(
+		(boarder.x_max_ - boarder.x_min_) * (boarder.x_max_ - boarder.x_min_) +
+		(boarder.y_max_ - boarder.y_min_) * (boarder.y_max_ - boarder.y_min_) +
+		(boarder.z_max_ - boarder.z_min_) * (boarder.z_max_ - boarder.z_min_));
+	//--
+
 
 	Grid grid(boarder, points.size(), DENSITY);
 	grid.fill(points);
 
+	for(size_t i = 0; i < 8; ++i)
+	{
+		std::cout << grid.get_cell(i).distance_to_point(&points[0]) << '\n';
+	}
 
 
-	size_t i_cell = points[0].get_the_cell_number(); // получим номер €чейки, в которой точка
-	ExtendPoint *p = &(grid.get_cell(i_cell).closest_point_in_cell_nn(points[0])); // получим близжайшую точку к нашей точке в этой €чейки
+	//size_t i_cell = points[0].get_the_cell_number(); // получим номер €чейки, в которой точка
+	//ExtendPoint *p = &(grid.get_cell(i_cell).closest_point_in_cell_nn(points[0])); // получим близжайшую точку к нашей точке в этой €чейки
 
-	double distance = points[0].distance(p);
+	//double distance = points[0].distance(p);
 
-	std::set<Cell*> cells;
-	grid.nearest_cells(cells, p, distance);
+	//std::set<Cell*> cells;
+	//grid.nearest_cells(cells, p, d1);
+
+
 
 	/*cout << points[0] << endl;
 	cout << points[1] << endl << endl;
