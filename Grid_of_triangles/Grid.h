@@ -53,7 +53,7 @@ public:
 	// Returns to std::set<Cell*>& cells 
 	// that have a distance between them and a point less than the "distance"
 	void nearest_cells(std::set<Cell*>& result, ExtendPoint*, double);
-	void nearest_cells(std::set<Cell*>& result, Cell& cell, ExtendPoint* p, double dist);
+	void nearest_cells(std::set<Cell*>& result, Cell* cell, ExtendPoint* p, double dist);
 
 	void is_cell_near(std::set<Cell*>& cells,  double, ExtendPoint*);
 

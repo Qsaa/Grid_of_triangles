@@ -77,7 +77,7 @@ int Grid::i_up(int i)
 int Grid::i_down(int i)
 {
 	auto [x, y, z] = convert_from_i_to_xyz(i);
-	if (x - 1 >= 0)
+	if (x > 0)
 	{
 		return convert_from_xyz_to_i(x - 1, y, z);
 	}
@@ -97,11 +97,11 @@ int Grid::i_left(int i)
 int Grid::i_right(int i)
 {
 	auto [x, y, z] = convert_from_i_to_xyz(i);
-	if (y - 1 >= 0)
+	if (y > 0)
 	{
 		return convert_from_xyz_to_i(x, y - 1, z);
 	}
-	return 1;
+	return -1;
 }
 
 int Grid::i_ahead(int i)
@@ -117,7 +117,7 @@ int Grid::i_ahead(int i)
 int Grid::i_back(int i)
 {
 	auto [x, y, z] = convert_from_i_to_xyz(i);
-	if (z - 1 >= 0)
+	if (z > 0)
 	{
 		return convert_from_xyz_to_i(x, y, z - 1);;
 	}
@@ -192,23 +192,27 @@ Cell& Grid::get_cell(size_t i)
 
 void Grid::nearest_cells(std::set<Cell*>& result, ExtendPoint* p, double dist)
 {
-	nearest_cells(result, get_cell(p->get_the_cell_number()), p, dist);
+	nearest_cells(result, &get_cell(p->get_the_cell_number()), p, dist);
 }
 
-void Grid::nearest_cells(std::set<Cell*>& cellset, Cell& cell, ExtendPoint* point, double dist)
+void Grid::nearest_cells(std::set<Cell*>& cellset, Cell* cell, ExtendPoint* point, double dist)
 {
+	if (cell == nullptr || cellset.count(cell))
+	{
+		return;
+	}
+	
+	if (true)
+	{
+		cellset.insert(cell);
+	}
+
 	Cell* (Grid:: * directions_f[6])(Cell*) = {&Grid::up, &Grid::down, &Grid::left, &Grid::right, &Grid::ahead, &Grid::back};
+	
+
 	for (auto direction : directions_f)
 	{
-		if (
-			(cellset.count(&cell) == 0u) &&
-			((this->*direction)(&cell))&&
-			((this->*direction)(&cell)->distance_to_point(point) < dist)
-			)
-		{
-			cellset.insert((this->*direction)(&cell));
-			nearest_cells(cellset, *((this->*direction)(&cell)), point, dist);
-		}
+		nearest_cells(cellset, ((this->*direction)(cell)), point, dist);
 	}
 }
 
